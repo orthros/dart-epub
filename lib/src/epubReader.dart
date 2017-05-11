@@ -20,15 +20,7 @@ import 'schema/opf/epubMetadataCreator.dart';
 import 'package:archive/archive.dart';
 
 class EpubReader {
-  
-  /// Opens the book synchronously without reading its content. Holds the handle to the EPUB file.
-  static EpubBookRef OpenBook(String filePath) {
-    EpubBookRef res;
-    Future.wait([OpenBookAsync(filePath)])
-          .then((List<EpubBookRef> results) => res = results.first);
-    return res;
-  }
-
+    
   /// Opens the book asynchronously without reading its content. Holds the handle to the EPUB file.
   static Future<EpubBookRef> OpenBookAsync(String filePath) async {
     var targetFile = new IO.File(filePath);
@@ -54,15 +46,7 @@ class EpubReader {
     bookRef.Author = bookRef.AuthorList.join(", ");
     bookRef.Content = await ContentReader.ParseContentMap(bookRef);
     return bookRef;
-  }
-
-  /// Opens the book synchronously and reads all of its content into the memory. Does not hold the handle to the EPUB file.
-  static EpubBook ReadBook(String filePath) {
-    EpubBook res;
-    Future.wait([ReadBookAsync(filePath)])
-          .then((List<EpubBook> result) => res = result.first);
-    return res;
-  }
+  }  
 
   /// Opens the book asynchronously and reads all of its content into the memory. Does not hold the handle to the EPUB file.
   static Future<EpubBook> ReadBookAsync(String filePath) async {
