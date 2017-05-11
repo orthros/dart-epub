@@ -9,4 +9,4 @@ dartanalyzer --fatal-warnings \
   lib/src/epubReader.dart
 
 # Run the tests.
-dart -c test/epub_test.dart
+dart -c test/enum_string_test.dart
