@@ -7,7 +7,7 @@ import 'package:path/path.dart' as path;
 
 main() async {  
   await test("Test Epub Ref", () async {  
-   String fileName = "Alice.epub";
+   String fileName = "alice.epub";
    String fullPath = path.join(IO.Directory.current.path, fileName);
    EpubBookRef epubRef = await EpubReader.OpenBookAsync(fullPath);
    
@@ -15,7 +15,7 @@ main() async {
    expect(epubRef.Title, equals("Alice's Adventures in Wonderland"));
   });
   await test("Test Epub Read", () async {
-    String fileName = "Alice.epub";
+    String fileName = "alice.epub";
     String fullPath = path.join(IO.Directory.current.path, fileName);
     EpubBook epubRef = await EpubReader.ReadBookAsync(fullPath);
    
