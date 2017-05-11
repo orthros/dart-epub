@@ -84,8 +84,10 @@ class PackageReader {
       result.Coverages = new List<String>();
       result.Rights = new List<String>();
       result.MetaItems = new List<EpubMetadataMeta>();
-      metadataNode.children.forEach((xml.XmlElement metadataItemNode){
-    
+      metadataNode.children.where((xml.XmlNode node)=> node is xml.XmlElement)
+                           .map((xml.XmlNode node) => node as xml.XmlElement)
+                           .forEach((xml.XmlElement metadataItemNode) {
+        
         String innerText = metadataItemNode.text;
         switch (metadataItemNode.name.local.toLowerCase())
         {
@@ -269,7 +271,10 @@ class PackageReader {
   static EpubManifest ReadManifest(xml.XmlElement manifestNode)
   {
       EpubManifest result = new EpubManifest();
-      manifestNode.children.forEach((xml.XmlElement manifestItemNode){
+      result.Items = new List<EpubManifestItem>();
+      manifestNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                           .map((xml.XmlNode node) => node as xml.XmlElement)
+                           .forEach((xml.XmlElement manifestItemNode){
         if (manifestItemNode.name.local.toLowerCase() == "item")
         {
           EpubManifestItem manifestItem = new EpubManifestItem();
@@ -315,11 +320,14 @@ class PackageReader {
 
   static EpubSpine ReadSpine(xml.XmlElement spineNode) {
     EpubSpine result = new EpubSpine();
+    result.Items = new List<EpubSpineItemRef>();
     String tocAttribute = spineNode.getAttribute("toc");
     if (tocAttribute == null || tocAttribute.isEmpty)
         throw new Exception("Incorrect EPUB spine: TOC is missing");
     result.TableOfContents = tocAttribute;
-    spineNode.children.forEach((xml.XmlElement spineItemNode) {
+    spineNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                      .map((xml.XmlNode node) => node as xml.XmlElement)
+                      .forEach((xml.XmlElement spineItemNode) {
       if (spineItemNode.name.local.toLowerCase() == "itemref") {
         EpubSpineItemRef spineItemRef = new EpubSpineItemRef();
         String idRefAttribute = spineItemNode.getAttribute("idref");
@@ -336,7 +344,10 @@ class PackageReader {
 
   static EpubGuide ReadGuide(xml.XmlElement guideNode) {
     EpubGuide result = new EpubGuide();
-    guideNode.children.forEach((xml.XmlElement guideReferenceNode) {
+    result.Items = new List<EpubGuideReference>();
+    guideNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                      .map((xml.XmlNode node) => node as xml.XmlElement)
+                      .forEach((xml.XmlElement guideReferenceNode) {
       if (guideReferenceNode.name.local.toLowerCase() == "reference") {
         EpubGuideReference guideReference = new EpubGuideReference();
         guideReferenceNode.attributes.forEach((xml.XmlAttribute guideReferenceNodeAttribute) {

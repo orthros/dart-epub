@@ -86,7 +86,10 @@ class NavigationReader {
 
   static EpubNavigationHead ReadNavigationHead(xml.XmlElement headNode) {
       EpubNavigationHead result = new EpubNavigationHead();
-      headNode.children.forEach((xml.XmlElement metaNode) {      
+      result.Metadata = new List<EpubNavigationHeadMeta>();
+      headNode.children.where((xml.XmlNode node)=> node is xml.XmlElement)
+                       .map((xml.XmlNode node) => node as xml.XmlElement)
+                       .forEach((xml.XmlElement metaNode) {      
         if (metaNode.name.local.toLowerCase() == "meta")
         {
             EpubNavigationHeadMeta meta = new EpubNavigationHeadMeta();
@@ -117,7 +120,10 @@ class NavigationReader {
 
   static EpubNavigationDocTitle ReadNavigationDocTitle(xml.XmlElement docTitleNode) {
       EpubNavigationDocTitle result = new EpubNavigationDocTitle();
-      docTitleNode.children.forEach((xml.XmlElement textNode) {
+      result.Titles = new List<String>();
+      docTitleNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                           .map((xml.XmlNode node) => node as xml.XmlElement)
+                           .forEach((xml.XmlElement textNode) {
         if (textNode.name.local.toLowerCase() == "text")
           result.Titles.add(textNode.text);
       });
@@ -136,7 +142,10 @@ class NavigationReader {
   static EpubNavigationMap ReadNavigationMap(xml.XmlElement navigationMapNode)
   {
       EpubNavigationMap result = new EpubNavigationMap();
-      navigationMapNode.children.forEach((xml.XmlElement navigationPointNode) {      
+      result.Points = new List<EpubNavigationPoint>();
+      navigationMapNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                                .map((xml.XmlNode node) => node as xml.XmlElement)
+                                .forEach((xml.XmlElement navigationPointNode) {      
         if (navigationPointNode.name.local.toLowerCase() == "navPoint") {
           EpubNavigationPoint navigationPoint = ReadNavigationPoint(navigationPointNode);
           result.Points.add(navigationPoint);
@@ -222,7 +231,10 @@ class NavigationReader {
   static EpubNavigationPageList ReadNavigationPageList(xml.XmlElement navigationPageListNode)
   {
       EpubNavigationPageList result = new EpubNavigationPageList();
-      navigationPageListNode.children.forEach((xml.XmlElement pageTargetNode){      
+      result.Targets = new List<EpubNavigationPageTarget>();
+      navigationPageListNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                                     .map((xml.XmlNode node) => node as xml.XmlElement)
+                                     .forEach((xml.XmlElement pageTargetNode){      
         if (pageTargetNode.name.local == "pageTarget") {
           EpubNavigationPageTarget pageTarget = ReadNavigationPageTarget(pageTargetNode);
           result.Targets.add(pageTarget);
@@ -234,6 +246,7 @@ class NavigationReader {
   static EpubNavigationPageTarget ReadNavigationPageTarget(xml.XmlElement navigationPageTargetNode)
   {
       EpubNavigationPageTarget result = new EpubNavigationPageTarget();
+      result.NavigationLabels = new List<EpubNavigationLabel>();
       navigationPageTargetNode.attributes.forEach((xml.XmlAttribute navigationPageTargetNodeAttribute) {      
         String attributeValue = navigationPageTargetNodeAttribute.value;
         switch (navigationPageTargetNodeAttribute.name.local.toLowerCase()) {
@@ -259,7 +272,9 @@ class NavigationReader {
       if (result.Type == EpubNavigationPageTargetType.UNDEFINED) {
           throw new Exception("Incorrect EPUB navigation page target: page target type is missing.");
       }
-      navigationPageTargetNode.children.forEach((xml.XmlElement navigationPageTargetChildNode) {
+      navigationPageTargetNode.children.where((xml.XmlNode node) => node is xml.XmlElement)
+                                       .map((xml.XmlNode node) => node as xml.XmlElement)
+                                       .forEach((xml.XmlElement navigationPageTargetChildNode) {
         switch (navigationPageTargetChildNode.name.local.toLowerCase())
         {
           case "navlabel":
