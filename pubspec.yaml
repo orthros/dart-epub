@@ -13,3 +13,4 @@ dependencies:
 dev_dependencies:  
   scheduled_test: '^0.12.0'
   test: '^0.12.7'
+  path: any
