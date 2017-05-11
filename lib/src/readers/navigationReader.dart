@@ -201,7 +201,7 @@ class NavigationReader {
 
   static EpubNavigationLabel ReadNavigationLabel(xml.XmlElement navigationLabelNode) {
     EpubNavigationLabel result = new EpubNavigationLabel();
-    xml.XmlElement navigationLabelTextNode = navigationLabelNode.findElements("pageList")
+    xml.XmlElement navigationLabelTextNode = navigationLabelNode.findElements("text", namespace: navigationLabelNode.name.namespaceUri)
                                                                 .firstWhere((xml.XmlElement elem) => elem != null, orElse: () => null);
     if (navigationLabelTextNode == null)
         throw new Exception("Incorrect EPUB navigation label: label text element is missing.");
