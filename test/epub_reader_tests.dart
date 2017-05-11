@@ -5,12 +5,13 @@ import 'package:epub/epub.dart';
 import 'dart:io' as IO;
 import 'package:path/path.dart' as path;
 
-main() {  
-  test("Test Author", () {  
+main() async {  
+  await test("Test Epub", () async {  
    String fileName = "Alice.epub";
    String fullPath = path.join(IO.Directory.current.path, fileName);
-   EpubBookRef epubRef = EpubReader.OpenBook(fullPath);
+   EpubBookRef epubRef = await EpubReader.OpenBookAsync(fullPath);
    
-   expect( epubRef.Author, equals("Lewis Carroll"));  
-  });
+   expect(epubRef.Author, equals("Lewis Carroll"));  
+   expect(epubRef.Title, equals("Alice's Adventures in Wonderland"));
+  });  
  }
