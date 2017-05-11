@@ -21,7 +21,7 @@ class BookCoverReader {
                                                 .Package
                                                 .Manifest
                                                 .Items
-                                                .firstWhere((EpubManifestItem manifestItem) => manifestItem.Id.toLowerCase() == coverMetaItem.Content.toLowerCase(), orElse: () => null));
+                                                .firstWhere((EpubManifestItem manifestItem) => manifestItem.Id.toLowerCase() == coverMetaItem.Content.toLowerCase(), orElse: () => null);
     if (coverManifestItem == null)
       throw new Exception("Incorrect EPUB manifest: item with ID = \"${coverMetaItem.Content}\" is missing.");
     EpubByteContentFileRef coverImageContentFileRef;
