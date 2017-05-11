@@ -10,10 +10,10 @@ import 'package:archive/archive.dart';
 import 'package:image/image.dart';
 
 class EpubBookRef {
-  Archive epubArchive;
+  Archive _epubArchive;
   
   EpubBookRef(Archive epubArchive) {
-      this.epubArchive = epubArchive;
+      this._epubArchive = epubArchive;
   }
   
   String FilePath;
@@ -24,7 +24,7 @@ class EpubBookRef {
   EpubContentRef Content;
 
   Archive EpubArchive() {
-    return epubArchive;
+    return _epubArchive;
   }
   
   Future<Image> ReadCoverAsync() async {

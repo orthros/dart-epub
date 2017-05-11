@@ -36,7 +36,7 @@ abstract class EpubContentFileRef {
 
     ArchiveFile getContentFileEntry() {
         String contentFilePath = ZipPathUtils.Combine(epubBookRef.Schema.ContentDirectoryPath, FileName);
-        ArchiveFile contentFileEntry = epubBookRef.EpubArchive
+        ArchiveFile contentFileEntry = epubBookRef.EpubArchive()
                                                   .files
                                                   .firstWhere((ArchiveFile x) => x.name == contentFilePath, orElse: () => null);
         if (contentFileEntry == null)
