@@ -18,25 +18,11 @@ abstract class EpubContentFileRef {
     EpubContentType ContentType;
     String ContentMimeType;
 
-    List<int> ReadContentAsBytes() {
-      List<int> result;
-      Future.wait([ReadContentAsBytesAsync()])
-            .then((List responses) => result = responses.first);
-      return result;
-    }
-
     Future<List<int>> ReadContentAsBytesAsync() async {
         ArchiveFile contentFileEntry = getContentFileEntry();
         var content = openContentStream(contentFileEntry);        
         return content;
-    }
-
-    String ReadContentAsText() {
-      String result = "";
-      Future.wait([ReadContentAsTextAsync()])
-            .then((List responses) => result = responses.first);
-      return result;
-    }
+    }    
 
     Future<String> ReadContentAsTextAsync() async {
         List<int> contentStream = GetContentStream();
