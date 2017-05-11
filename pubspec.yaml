@@ -1,0 +1,16 @@
+name: dartpub
+version: 0.0.1-dev
+author: Colin Nelson <colin@ifdevthentalk.com>
+description: Epub Parser for Dart
+homepage: https://github.com/orthros/dartpub
+environment:
+  sdk: '>=1.13.2 <2.0.0'
+dependencies:
+  async: any
+  archive: any
+  xml: any
+  image:
+    git: git://github.com/brendan-duncan/image.git
+dev_dependencies:  
+  scheduled_test: '^0.12.0'
+  test: '^0.12.7'

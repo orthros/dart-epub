@@ -1,2 +1,2 @@
 # dartpub
-Epub Reader for Dart
+Epub Reader for Dart inspired by [this fantastic C# Epub Reader](https://github.com/versfx/EpubReader)
