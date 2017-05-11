@@ -1,5 +1,5 @@
-import 'epubGuideItemRef.dart';
+import 'package:epub/src/schema/opf/epubGuideReference.dart';
 
 class EpubGuide {
-  List<EpubGuideItemRef> Items;
+  List<EpubGuideReference> Items;
 }
