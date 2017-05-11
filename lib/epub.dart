@@ -4,3 +4,4 @@ export 'src/utils/enumFromString.dart';
 
 export 'src/epubReader.dart';
 export 'src/refEntities/epubBookRef.dart';
+export 'src/entities/epubBook.dart';
