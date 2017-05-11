@@ -57,7 +57,7 @@ class PackageReader {
       EpubSpine spine = ReadSpine(spineNode);
       result.Spine = spine;
       xml.XmlElement guideNode = packageNode.findElements("guide", namespace: opfNamespace)
-                                            .firstWhere((xml.XmlElement elem) => elem != null);
+                                            .firstWhere((xml.XmlElement elem) => elem != null, orElse: () => null);
       if (guideNode != null)
       {
           EpubGuide guide = ReadGuide(guideNode);
