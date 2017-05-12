@@ -5,7 +5,7 @@ import 'epub_spine.dart';
 import 'epub_version.dart';
 
 class EpubPackage {
-  EpubVersion EpubVersion;
+  EpubVersion Version;
   EpubMetadata Metadata;
   EpubManifest Manifest;
   EpubSpine Spine;

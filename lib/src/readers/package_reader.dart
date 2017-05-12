@@ -37,9 +37,9 @@ class PackageReader {
     EpubPackage result = new EpubPackage();
     String epubVersionValue = packageNode.getAttribute("version");
     if (epubVersionValue == "2.0")
-      result.EpubVersion = EpubVersion.Epub2;
+      result.Version = EpubVersion.Epub2;
     else if (epubVersionValue == "3.0")
-      result.EpubVersion = EpubVersion.Epub3;
+      result.Version = EpubVersion.Epub3;
     else
       throw new Exception("Unsupported EPUB version: ${epubVersionValue}.");
     xml.XmlElement metadataNode = packageNode
@@ -48,7 +48,7 @@ class PackageReader {
     if (metadataNode == null)
       throw new Exception(
           "EPUB parsing error: metadata not found in the package.");
-    EpubMetadata metadata = ReadMetadata(metadataNode, result.EpubVersion);
+    EpubMetadata metadata = ReadMetadata(metadataNode, result.Version);
     result.Metadata = metadata;
     xml.XmlElement manifestNode = packageNode
         .findElements("manifest", namespace: opfNamespace)
