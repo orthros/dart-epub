@@ -4,7 +4,7 @@
 set -e
 
 # Analyze the code.
-dartanalyzer \
+dartanalyzer --strong --fatal-warnings \
   lib/epub.dart \
   lib/src/epub_reader.dart
 

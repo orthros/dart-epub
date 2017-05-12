@@ -181,7 +181,10 @@ class NavigationReader {
   static EpubNavigationDocAuthor ReadNavigationDocAuthor(
       xml.XmlElement docAuthorNode) {
     EpubNavigationDocAuthor result = new EpubNavigationDocAuthor();
-    docAuthorNode.children.forEach((xml.XmlElement textNode) {
+    docAuthorNode.children
+        .where((xml.XmlNode node) => node is xml.XmlElement)
+        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .forEach((xml.XmlElement textNode) {
       if (textNode.name.local.toLowerCase() == "text") {
         result.Authors.add(textNode.text);
       }
@@ -231,6 +234,8 @@ class NavigationReader {
     result.NavigationLabels = new List<EpubNavigationLabel>();
     result.ChildNavigationPoints = new List<EpubNavigationPoint>();
     navigationPointNode.children
+        .where((xml.XmlNode node) => node is xml.XmlElement)
+        .map((xml.XmlNode node) => node as xml.XmlElement)
         .forEach((xml.XmlElement navigationPointChildNode) {
       switch (navigationPointChildNode.name.local.toLowerCase()) {
         case "navlabel":
@@ -394,6 +399,8 @@ class NavigationReader {
       }
     });
     navigationListNode.children
+        .where((xml.XmlNode node) => node is xml.XmlElement)
+        .map((xml.XmlNode node) => node as xml.XmlElement)
         .forEach((xml.XmlElement navigationListChildNode) {
       switch (navigationListChildNode.name.local.toLowerCase()) {
         case "navlabel":
@@ -442,6 +449,8 @@ class NavigationReader {
     }
 
     navigationTargetNode.children
+        .where((xml.XmlNode node) => node is xml.XmlElement)
+        .map((xml.XmlNode node) => node as xml.XmlElement)
         .forEach((xml.XmlElement navigationTargetChildNode) {
       switch (navigationTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":
@@ -460,7 +469,7 @@ class NavigationReader {
       throw new Exception(
           "Incorrect EPUB navigation target: at least one navLabel element is required.");
     }
-    
+
     return result;
   }
 }
