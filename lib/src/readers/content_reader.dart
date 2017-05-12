@@ -8,13 +8,13 @@ import '../schema/opf/epub_manifest_item.dart';
 
 class ContentReader {
   static EpubContentRef ParseContentMap(EpubBookRef bookRef) {
-    EpubContentRef result = new EpubContentRef();    
+    EpubContentRef result = new EpubContentRef();
     result.Html = new Map<String, EpubTextContentFileRef>();
     result.Css = new Map<String, EpubTextContentFileRef>();
     result.Images = new Map<String, EpubByteContentFileRef>();
     result.Fonts = new Map<String, EpubByteContentFileRef>();
     result.AllFiles = new Map<String, EpubContentFileRef>();
-  
+
     bookRef.Schema.Package.Manifest.Items
         .forEach((EpubManifestItem manifestItem) {
       String fileName = manifestItem.Href;
@@ -44,6 +44,19 @@ class ContentReader {
             case EpubContentType.CSS:
               result.Css[fileName] = epubTextContentFile;
               break;
+            case EpubContentType.DTBOOK:
+            case EpubContentType.DTBOOK_NCX:
+            case EpubContentType.OEB1_DOCUMENT:
+            case EpubContentType.XML:
+            case EpubContentType.OEB1_CSS:
+            case EpubContentType.IMAGE_GIF:
+            case EpubContentType.IMAGE_JPEG:
+            case EpubContentType.IMAGE_PNG:
+            case EpubContentType.IMAGE_SVG:
+            case EpubContentType.FONT_TRUETYPE:
+            case EpubContentType.FONT_OPENTYPE:
+            case EpubContentType.OTHER:
+              break;
           }
           result.AllFiles[fileName] = epubTextContentFile;
           break;
@@ -66,6 +79,15 @@ class ContentReader {
             case EpubContentType.FONT_TRUETYPE:
             case EpubContentType.FONT_OPENTYPE:
               result.Fonts[fileName] = epubByteContentFile;
+              break;
+            case EpubContentType.CSS:
+            case EpubContentType.XHTML_1_1:
+            case EpubContentType.DTBOOK:
+            case EpubContentType.DTBOOK_NCX:
+            case EpubContentType.OEB1_DOCUMENT:
+            case EpubContentType.XML:
+            case EpubContentType.OEB1_CSS:
+            case EpubContentType.OTHER:
               break;
           }
           result.AllFiles[fileName] = epubByteContentFile;
