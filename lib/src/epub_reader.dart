@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' as IO;
 
 import 'package:archive/archive.dart';
 
@@ -21,16 +20,11 @@ import 'schema/opf/epub_metadata_creator.dart';
 
 class EpubReader {
   /// Opens the book asynchronously without reading its content. Holds the handle to the EPUB file.
-  static Future<EpubBookRef> OpenBookAsync(String filePath) async {
-    var targetFile = new IO.File(filePath);
-    if (!(await targetFile.exists()))
-      throw new Exception("Specified epub file not found: ${filePath}");
-
-    List<int> bytes = await targetFile.readAsBytes();
+  static Future<EpubBookRef> OpenBookAsync(List<int> bytes) async {
     Archive epubArchive = new ZipDecoder().decodeBytes(bytes);
 
     EpubBookRef bookRef = new EpubBookRef(epubArchive);
-    bookRef.FilePath = filePath;
+    bookRef.FilePath = "";
     bookRef.Schema = await SchemaReader.ReadSchemaAsync(epubArchive);
     bookRef.Title = bookRef.Schema.Package.Metadata.Titles
         .firstWhere((String name) => true, orElse: () => "");
@@ -43,10 +37,10 @@ class EpubReader {
   }
 
   /// Opens the book asynchronously and reads all of its content into the memory. Does not hold the handle to the EPUB file.
-  static Future<EpubBook> ReadBookAsync(String filePath) async {
+  static Future<EpubBook> ReadBookAsync(List<int> bytes) async {
     EpubBook result = new EpubBook();
 
-    EpubBookRef epubBookRef = await OpenBookAsync(filePath);
+    EpubBookRef epubBookRef = await OpenBookAsync(bytes);
     result.FilePath = epubBookRef.FilePath;
     result.Schema = epubBookRef.Schema;
     result.Title = epubBookRef.Title;
@@ -136,13 +130,13 @@ class EpubReader {
     List<EpubChapter> result = new List<EpubChapter>();
     await chapterRefs.forEach((EpubChapterRef chapterRef) async {
       EpubChapter chapter = new EpubChapter();
-      
+
       chapter.Title = chapterRef.Title;
       chapter.ContentFileName = chapterRef.ContentFileName;
-      chapter.Anchor = chapterRef.Anchor;    
+      chapter.Anchor = chapterRef.Anchor;
       chapter.HtmlContent = await chapterRef.ReadHtmlContentAsync();
       chapter.SubChapters = await readChapters(chapterRef.SubChapters);
-      
+
       result.add(chapter);
     });
     return result;
