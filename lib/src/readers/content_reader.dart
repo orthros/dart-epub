@@ -1,10 +1,10 @@
-import '../entities/epubContentType.dart';
-import '../refEntities/epubBookRef.dart';
-import '../refEntities/epubByteContentFileRef.dart';
-import '../refEntities/epubContentFileRef.dart';
-import '../refEntities/epubContentRef.dart';
-import '../refEntities/epubTextContentFileRef.dart';
-import '../schema/opf/epubManifestItem.dart';
+import '../entities/epub_content_type.dart';
+import '../ref_entities/epub_book_ref.dart';
+import '../ref_entities/epub_byte_content_file_ref.dart';
+import '../ref_entities/epub_content_file_ref.dart';
+import '../ref_entities/epub_content_ref.dart';
+import '../ref_entities/epub_text_content_file_ref.dart';
+import '../schema/opf/epub_manifest_item.dart';
 
 class ContentReader {
   static EpubContentRef ParseContentMap(EpubBookRef bookRef) {

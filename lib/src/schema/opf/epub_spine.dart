@@ -1,4 +1,4 @@
-import 'epubSpineItemRef.dart';
+import 'epub_spine_item_ref.dart';
 
 class EpubSpine {
   String TableOfContents;

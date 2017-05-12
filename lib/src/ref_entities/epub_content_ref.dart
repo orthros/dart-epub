@@ -1,6 +1,6 @@
-import 'epubByteContentFileRef.dart';
-import 'epubContentFileRef.dart';
-import 'epubTextContentFileRef.dart';
+import 'epub_byte_content_file_ref.dart';
+import 'epub_content_file_ref.dart';
+import 'epub_text_content_file_ref.dart';
 
 class EpubContentRef {
   Map<String, EpubTextContentFileRef> Html;

@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import '../refEntities/epubBookRef.dart';
-import '../refEntities/epubByteContentFileRef.dart';
-import '../schema/opf/epubManifestItem.dart';
-import '../schema/opf/epubMetadataMeta.dart';
-
 import 'package:image/image.dart' as images;
+
+import '../ref_entities/epub_book_ref.dart';
+import '../ref_entities/epub_byte_content_file_ref.dart';
+import '../schema/opf/epub_manifest_item.dart';
+import '../schema/opf/epub_metadata_meta.dart';
 
 class BookCoverReader {
   static Future<images.Image> ReadBookCoverAsync(EpubBookRef bookRef) async {

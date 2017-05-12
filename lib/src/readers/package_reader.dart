@@ -1,23 +1,23 @@
-import '../schema/opf/epubGuide.dart';
-import '../schema/opf/epubGuideReference.dart';
-import '../schema/opf/epubManifest.dart';
-import '../schema/opf/epubManifestItem.dart';
-import '../schema/opf/epubMetadata.dart';
-import '../schema/opf/epubMetadataContributor.dart';
-import '../schema/opf/epubMetadataCreator.dart';
-import '../schema/opf/epubMetadataDate.dart';
-import '../schema/opf/epubMetadataIdentifier.dart';
-import '../schema/opf/epubMetadataMeta.dart';
-import '../schema/opf/epubPackage.dart';
-import '../schema/opf/epubSpine.dart';
-import '../schema/opf/epubSpineItemRef.dart';
-import '../schema/opf/epubVersion.dart';
-
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:archive/archive.dart';
 import 'package:xml/xml.dart' as xml;
+
+import '../schema/opf/epub_guide.dart';
+import '../schema/opf/epub_guide_reference.dart';
+import '../schema/opf/epub_manifest.dart';
+import '../schema/opf/epub_manifest_item.dart';
+import '../schema/opf/epub_metadata.dart';
+import '../schema/opf/epub_metadata_contributor.dart';
+import '../schema/opf/epub_metadata_creator.dart';
+import '../schema/opf/epub_metadata_date.dart';
+import '../schema/opf/epub_metadata_identifier.dart';
+import '../schema/opf/epub_metadata_meta.dart';
+import '../schema/opf/epub_package.dart';
+import '../schema/opf/epub_spine.dart';
+import '../schema/opf/epub_spine_item_ref.dart';
+import '../schema/opf/epub_version.dart';
 
 class PackageReader {
   static Future<EpubPackage> ReadPackageAsync(Archive epubArchive, String rootFilePath) async {

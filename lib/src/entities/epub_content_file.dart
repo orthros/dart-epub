@@ -1,4 +1,4 @@
-import 'epubContentType.dart';
+import 'epub_content_type.dart';
 
 abstract class EpubContentFile
 {

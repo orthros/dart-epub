@@ -1,5 +1,5 @@
-import 'epubNavigationLabel.dart';
-import 'epubNavigationTarget.dart';
+import 'epub_navigation_label.dart';
+import 'epub_navigation_target.dart';
 
 class EpubNavigationList {
     String Id;

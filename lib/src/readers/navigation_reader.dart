@@ -1,27 +1,27 @@
-import '../schema/navigation/epubMetadata.dart';
-import '../schema/navigation/epubNavigation.dart';
-import '../schema/navigation/epubNavigationDocAuthor.dart';
-import '../schema/navigation/epubNavigationDocTitle.dart';
-import '../schema/navigation/epubNavigationHead.dart';
-import '../schema/navigation/epubNavigationHeadMeta.dart';
-import '../schema/navigation/epubNavigationLabel.dart';
-import '../schema/navigation/epubNavigationList.dart';
-import '../schema/navigation/epubNavigationMap.dart';
-import '../schema/navigation/epubNavigationPageList.dart';
-import '../schema/navigation/epubNavigationPageTarget.dart';
-import '../schema/navigation/epubNavigationPageTargetType.dart';
-import '../schema/navigation/epubNavigationPoint.dart';
-import '../schema/navigation/epubNavigationTarget.dart';
-import '../schema/opf/epubManifestItem.dart';
-import '../schema/opf/epubPackage.dart';
-import '../utils/enumFromString.dart';
-import '../utils/zipPathUtils.dart';
-
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:xml/xml.dart' as xml;
 import 'package:archive/archive.dart';
+
+import '../schema/navigation/epub_metadata.dart';
+import '../schema/navigation/epub_navigation.dart';
+import '../schema/navigation/epub_navigation_doc_author.dart';
+import '../schema/navigation/epub_navigation_doc_title.dart';
+import '../schema/navigation/epub_navigation_head.dart';
+import '../schema/navigation/epub_navigation_head_meta.dart';
+import '../schema/navigation/epub_navigation_label.dart';
+import '../schema/navigation/epub_navigation_list.dart';
+import '../schema/navigation/epub_navigation_map.dart';
+import '../schema/navigation/epub_navigation_page_list.dart';
+import '../schema/navigation/epub_navigation_page_target.dart';
+import '../schema/navigation/epub_navigation_page_target_type.dart';
+import '../schema/navigation/epub_navigation_point.dart';
+import '../schema/navigation/epub_navigation_target.dart';
+import '../schema/opf/epub_manifest_item.dart';
+import '../schema/opf/epub_package.dart';
+import '../utils/enum_from_string.dart';
+import '../utils/zip_path_utils.dart';
 
 class NavigationReader {
   static Future<EpubNavigation> ReadNavigationAsync(Archive epubArchive, String contentDirectoryPath, EpubPackage package) async {

@@ -1,21 +1,21 @@
 import 'dart:async';
 
-import '../entities/epubSchema.dart';
-import '../readers/bookCoverReader.dart';
-import '../readers/chapterReader.dart';
-import 'epubChapterRef.dart';
-import 'epubContentRef.dart';
-
 import 'package:archive/archive.dart';
 import 'package:image/image.dart';
 
+import 'epub_chapter_ref.dart';
+import 'epub_content_ref.dart';
+import '../entities/epub_schema.dart';
+import '../readers/book_cover_reader.dart';
+import '../readers/chapter_reader.dart';
+
 class EpubBookRef {
   Archive _epubArchive;
-  
+
   EpubBookRef(Archive epubArchive) {
-      this._epubArchive = epubArchive;
+    this._epubArchive = epubArchive;
   }
-  
+
   String FilePath;
   String Title;
   String Author;
@@ -26,12 +26,12 @@ class EpubBookRef {
   Archive EpubArchive() {
     return _epubArchive;
   }
-  
+
   Future<Image> ReadCoverAsync() async {
-      return await BookCoverReader.ReadBookCoverAsync(this);
-  }  
+    return await BookCoverReader.ReadBookCoverAsync(this);
+  }
 
   Future<List<EpubChapterRef>> GetChaptersAsync() async {
-      return await ChapterReader.GetChapters(this);
+    return await ChapterReader.GetChapters(this);
   }
 }

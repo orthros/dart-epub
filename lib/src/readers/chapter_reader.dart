@@ -1,7 +1,7 @@
-import '../refEntities/epubBookRef.dart';
-import '../refEntities/epubChapterRef.dart';
-import '../refEntities/epubTextContentFileRef.dart';
-import '../schema/navigation/epubNavigationPoint.dart';
+import '../ref_entities/epub_book_ref.dart';
+import '../ref_entities/epub_chapter_ref.dart';
+import '../ref_entities/epub_text_content_file_ref.dart';
+import '../schema/navigation/epub_navigation_point.dart';
 
 class ChapterReader {
   static List<EpubChapterRef> GetChapters(EpubBookRef bookRef) {

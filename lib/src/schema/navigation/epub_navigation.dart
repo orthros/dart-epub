@@ -1,9 +1,9 @@
-import 'epubNavigationDocAuthor.dart';
-import 'epubNavigationDocTitle.dart';
-import 'epubNavigationHead.dart';
-import 'epubNavigationList.dart';
-import 'epubNavigationMap.dart';
-import 'epubNavigationPageList.dart';
+import 'epub_navigation_doc_author.dart';
+import 'epub_navigation_doc_title.dart';
+import 'epub_navigation_head.dart';
+import 'epub_navigation_list.dart';
+import 'epub_navigation_map.dart';
+import 'epub_navigation_page_list.dart';
 
 class EpubNavigation{
   EpubNavigationHead Head;

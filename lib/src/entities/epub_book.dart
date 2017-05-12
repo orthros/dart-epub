@@ -1,7 +1,6 @@
-import 'epubChapter.dart';
-import 'epubContent.dart';
-import 'epubSchema.dart';
-
+import 'epub_chapter.dart';
+import 'epub_content.dart';
+import 'epub_schema.dart';
 import 'package:image/image.dart';
 
 class EpubBook {

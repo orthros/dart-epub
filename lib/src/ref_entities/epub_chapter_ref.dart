@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'epubTextContentFileRef.dart';
+import 'epub_text_content_file_ref.dart';
 
 class EpubChapterRef {
     EpubTextContentFileRef epubTextContentFileRef;

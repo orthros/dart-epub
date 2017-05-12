@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../entities/epubContentType.dart';
-import 'epubBookRef.dart';
-import '../utils/zipPathUtils.dart';
-
 import 'package:archive/archive.dart';
+
+import 'epub_book_ref.dart';
+import '../entities/epub_content_type.dart';
+import '../utils/zip_path_utils.dart';
 
 abstract class EpubContentFileRef {
     EpubBookRef epubBookRef;

@@ -1,6 +1,6 @@
-import 'epubMetadata.dart';
-import 'epubNavigationLabel.dart';
-import 'epubNavigationPageTargetType.dart';
+import 'epub_metadata.dart';
+import 'epub_navigation_label.dart';
+import 'epub_navigation_page_target_type.dart';
 
 class EpubNavigationPageTarget {
     String Id;

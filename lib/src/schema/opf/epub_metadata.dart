@@ -1,8 +1,8 @@
-import 'epubMetadataContributor.dart';
-import 'epubMetadataCreator.dart';
-import 'epubMetadataDate.dart';
-import 'epubMetadataIdentifier.dart';
-import 'epubMetadataMeta.dart';
+import 'epub_metadata_contributor.dart';
+import 'epub_metadata_creator.dart';
+import 'epub_metadata_date.dart';
+import 'epub_metadata_identifier.dart';
+import 'epub_metadata_meta.dart';
 
 class EpubMetadata {
   List<String> Titles;

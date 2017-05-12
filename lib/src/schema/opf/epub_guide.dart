@@ -1,4 +1,4 @@
-import 'package:epub/src/schema/opf/epubGuideReference.dart';
+import 'epub_guide_reference.dart';
 
 class EpubGuide {
   List<EpubGuideReference> Items;

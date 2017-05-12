@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import '../entities/epubSchema.dart';
-import '../schema/navigation/epubNavigation.dart';
-import '../schema/opf/epubPackage.dart';
-import '../utils/zipPathUtils.dart';
-import 'navigationReader.dart';
-import 'rootFilePathReader.dart';
-import 'packageReader.dart';
-
 import 'package:archive/archive.dart';
+
+import 'navigation_reader.dart';
+import 'package_reader.dart';
+import 'root_file_path_reader.dart';
+import '../entities/epub_schema.dart';
+import '../schema/navigation/epub_navigation.dart';
+import '../schema/opf/epub_package.dart';
+import '../utils/zip_path_utils.dart';
 
 class SchemaReader {
   static Future<EpubSchema> ReadSchemaAsync(Archive epubArchive) async {
