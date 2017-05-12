@@ -99,12 +99,9 @@ class EpubReader {
     await textContentFileRefs
         .forEach((String key, EpubContentFileRef value) async {
       EpubTextContentFile textContentFile = new EpubTextContentFile();
-      {
-        textContentFile.FileName = value.FileName;
-        textContentFile.ContentType = value.ContentType;
-        textContentFile.ContentMimeType = value.ContentMimeType;
-      }
-      ;
+      textContentFile.FileName = value.FileName;
+      textContentFile.ContentType = value.ContentType;
+      textContentFile.ContentMimeType = value.ContentMimeType;
       textContentFile.Content = await value.ReadContentAsTextAsync();
       result[key] = textContentFile;
     });
@@ -125,13 +122,12 @@ class EpubReader {
   static Future<EpubByteContentFile> readByteContentFile(
       EpubContentFileRef contentFileRef) async {
     EpubByteContentFile result = new EpubByteContentFile();
-    {
-      result.FileName = contentFileRef.FileName;
-      result.ContentType = contentFileRef.ContentType;
-      result.ContentMimeType = contentFileRef.ContentMimeType;
-    }
-    ;
+
+    result.FileName = contentFileRef.FileName;
+    result.ContentType = contentFileRef.ContentType;
+    result.ContentMimeType = contentFileRef.ContentMimeType;
     result.Content = await contentFileRef.ReadContentAsBytesAsync();
+
     return result;
   }
 
@@ -140,14 +136,13 @@ class EpubReader {
     List<EpubChapter> result = new List<EpubChapter>();
     await chapterRefs.forEach((EpubChapterRef chapterRef) async {
       EpubChapter chapter = new EpubChapter();
-      {
-        chapter.Title = chapterRef.Title;
-        chapter.ContentFileName = chapterRef.ContentFileName;
-        chapter.Anchor = chapterRef.Anchor;
-      }
-      ;
+      
+      chapter.Title = chapterRef.Title;
+      chapter.ContentFileName = chapterRef.ContentFileName;
+      chapter.Anchor = chapterRef.Anchor;    
       chapter.HtmlContent = await chapterRef.ReadHtmlContentAsync();
       chapter.SubChapters = await readChapters(chapterRef.SubChapters);
+      
       result.add(chapter);
     });
     return result;

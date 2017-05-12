@@ -8,16 +8,13 @@ import '../schema/opf/epub_manifest_item.dart';
 
 class ContentReader {
   static EpubContentRef ParseContentMap(EpubBookRef bookRef) {
-    EpubContentRef result = new EpubContentRef();
-    {
-      result.Html = new Map<String, EpubTextContentFileRef>();
-      result.Css = new Map<String, EpubTextContentFileRef>();
-      result.Images = new Map<String, EpubByteContentFileRef>();
-      result.Fonts = new Map<String, EpubByteContentFileRef>();
-      result.AllFiles = new Map<String, EpubContentFileRef>();
-    }
-    ;
-
+    EpubContentRef result = new EpubContentRef();    
+    result.Html = new Map<String, EpubTextContentFileRef>();
+    result.Css = new Map<String, EpubTextContentFileRef>();
+    result.Images = new Map<String, EpubByteContentFileRef>();
+    result.Fonts = new Map<String, EpubByteContentFileRef>();
+    result.AllFiles = new Map<String, EpubContentFileRef>();
+  
     bookRef.Schema.Package.Manifest.Items
         .forEach((EpubManifestItem manifestItem) {
       String fileName = manifestItem.Href;

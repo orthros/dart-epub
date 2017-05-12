@@ -25,11 +25,13 @@ class ChapterReader {
         anchor = navigationPoint.Content.Source
             .substring(contentSourceAnchorCharIndex + 1);
       }
+
       EpubTextContentFileRef htmlContentFileRef;
       if (!bookRef.Content.Html.containsKey(contentFileName)) {
         throw new Exception(
             "Incorrect EPUB manifest: item with href = \"${contentFileName}\" is missing.");
       }
+
       htmlContentFileRef = bookRef.Content.Html[contentFileName];
       EpubChapterRef chapterRef = new EpubChapterRef(htmlContentFileRef);
       chapterRef.ContentFileName = contentFileName;
@@ -37,6 +39,7 @@ class ChapterReader {
       chapterRef.Title = navigationPoint.NavigationLabels.first.Text;
       chapterRef.SubChapters =
           GetChaptersImpl(bookRef, navigationPoint.ChildNavigationPoints);
+
       result.add(chapterRef);
     });
     return result;
