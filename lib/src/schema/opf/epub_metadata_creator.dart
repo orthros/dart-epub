@@ -1,5 +1,5 @@
-class EpubMetadataCreator{
-    String Creator;
-    String FileAs;
-    String Role;
+class EpubMetadataCreator {
+  String Creator;
+  String FileAs;
+  String Role;
 }

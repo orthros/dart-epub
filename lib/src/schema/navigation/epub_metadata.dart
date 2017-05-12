@@ -1,8 +1,8 @@
 class EpubNavigationContent {
-    String Id;
-    String Source;
+  String Id;
+  String Source;
 
-    String toString() {
-      return "Source: ${Source}";
-    }
+  String toString() {
+    return "Source: ${Source}";
+  }
 }

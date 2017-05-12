@@ -1,8 +1,7 @@
 class EpubNavigationLabel {
-    String Text;
+  String Text;
 
-    String toString()
-    {
-        return Text;
-    }
+  String toString() {
+    return Text;
+  }
 }

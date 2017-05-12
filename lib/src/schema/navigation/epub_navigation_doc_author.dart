@@ -1,3 +1,3 @@
 class EpubNavigationDocAuthor {
-    List<String> Authors;
+  List<String> Authors;
 }

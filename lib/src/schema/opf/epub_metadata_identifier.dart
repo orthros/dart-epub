@@ -1,5 +1,5 @@
-class EpubMetadataIdentifier{
-    String Id;
-    String Scheme;
-    String Identifier;
+class EpubMetadataIdentifier {
+  String Id;
+  String Scheme;
+  String Identifier;
 }

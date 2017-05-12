@@ -7,10 +7,10 @@ class EpubTextContentFileRef extends EpubContentFileRef {
   EpubTextContentFileRef(EpubBookRef epubBookRef) : super(epubBookRef);
 
   String ReadContent() {
-      return ReadContentAsText();
+    return ReadContentAsText();
   }
 
   Future<String> ReadContentAsync() async {
-      return ReadContentAsTextAsync();
+    return ReadContentAsTextAsync();
   }
 }

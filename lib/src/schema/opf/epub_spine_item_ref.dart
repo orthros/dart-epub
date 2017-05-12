@@ -2,7 +2,7 @@ class EpubSpineItemRef {
   String IdRef;
   bool IsLinear;
 
-  String toString() {    
+  String toString() {
     return "IdRef: ${IdRef}";
   }
 }

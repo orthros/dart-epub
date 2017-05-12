@@ -1,4 +1,4 @@
-class EpubManifestItem{
+class EpubManifestItem {
   String Id;
   String Href;
   String MediaType;

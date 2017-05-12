@@ -1,3 +1,3 @@
-class EpubNavigationDocTitle{
-    List<String> Titles;
+class EpubNavigationDocTitle {
+  List<String> Titles;
 }

@@ -5,7 +5,7 @@ import 'epub_navigation_list.dart';
 import 'epub_navigation_map.dart';
 import 'epub_navigation_page_list.dart';
 
-class EpubNavigation{
+class EpubNavigation {
   EpubNavigationHead Head;
   EpubNavigationDocTitle DocTitle;
   List<EpubNavigationDocAuthor> DocAuthors;

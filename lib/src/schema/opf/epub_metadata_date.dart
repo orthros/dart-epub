@@ -1,4 +1,4 @@
-class EpubMetadataDate{
-    String Date;
-    String Event;
+class EpubMetadataDate {
+  String Date;
+  String Event;
 }

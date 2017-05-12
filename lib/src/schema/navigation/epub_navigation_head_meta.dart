@@ -1,5 +1,5 @@
 class EpubNavigationHeadMeta {
-    String Name;
-    String Content;
-    String Scheme;
+  String Name;
+  String Content;
+  String Scheme;
 }
