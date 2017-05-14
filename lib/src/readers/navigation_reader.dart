@@ -181,6 +181,7 @@ class NavigationReader {
   static EpubNavigationDocAuthor ReadNavigationDocAuthor(
       xml.XmlElement docAuthorNode) {
     EpubNavigationDocAuthor result = new EpubNavigationDocAuthor();
+    result.Authors = new List<String>();
     docAuthorNode.children
         .where((xml.XmlNode node) => node is xml.XmlElement)
         .map((xml.XmlNode node) => node as xml.XmlElement)
