@@ -24,7 +24,7 @@ import '../utils/enum_from_string.dart';
 import '../utils/zip_path_utils.dart';
 
 class NavigationReader {
-  static Future<EpubNavigation> ReadNavigationAsync(Archive epubArchive,
+  static Future<EpubNavigation> readNavigation(Archive epubArchive,
       String contentDirectoryPath, EpubPackage package) async {
     EpubNavigation result = new EpubNavigation();
     String tocId = package.Spine.TableOfContents;
@@ -41,7 +41,7 @@ class NavigationReader {
     }
 
     String tocFileEntryPath =
-        ZipPathUtils.Combine(contentDirectoryPath, tocManifestItem.Href);
+        ZipPathUtils.combine(contentDirectoryPath, tocManifestItem.Href);
     ArchiveFile tocFileEntry = epubArchive.files.firstWhere(
         (ArchiveFile file) =>
             file.name.toLowerCase() == tocFileEntryPath.toLowerCase(),
@@ -71,7 +71,7 @@ class NavigationReader {
           "EPUB parsing error: TOC file does not contain head element.");
     }
 
-    EpubNavigationHead navigationHead = ReadNavigationHead(headNode);
+    EpubNavigationHead navigationHead = readNavigationHead(headNode);
     result.Head = navigationHead;
     xml.XmlElement docTitleNode = ncxNode
         .findElements("docTitle", namespace: ncxNamespace)
@@ -82,14 +82,14 @@ class NavigationReader {
     }
 
     EpubNavigationDocTitle navigationDocTitle =
-        ReadNavigationDocTitle(docTitleNode);
+        readNavigationDocTitle(docTitleNode);
     result.DocTitle = navigationDocTitle;
     result.DocAuthors = new List<EpubNavigationDocAuthor>();
     ncxNode
         .findElements("docAuthor", namespace: ncxNamespace)
         .forEach((xml.XmlElement docAuthorNode) {
       EpubNavigationDocAuthor navigationDocAuthor =
-          ReadNavigationDocAuthor(docAuthorNode);
+          readNavigationDocAuthor(docAuthorNode);
       result.DocAuthors.add(navigationDocAuthor);
     });
 
@@ -101,13 +101,13 @@ class NavigationReader {
           "EPUB parsing error: TOC file does not contain navMap element.");
     }
 
-    EpubNavigationMap navMap = ReadNavigationMap(navMapNode);
+    EpubNavigationMap navMap = readNavigationMap(navMapNode);
     result.NavMap = navMap;
     xml.XmlElement pageListNode = ncxNode
         .findElements("pageList", namespace: ncxNamespace)
         .firstWhere((xml.XmlElement elem) => elem != null, orElse: () => null);
     if (pageListNode != null) {
-      EpubNavigationPageList pageList = ReadNavigationPageList(pageListNode);
+      EpubNavigationPageList pageList = readNavigationPageList(pageListNode);
       result.PageList = pageList;
     }
 
@@ -116,14 +116,14 @@ class NavigationReader {
         .findElements("navList", namespace: ncxNamespace)
         .forEach((xml.XmlElement navigationListNode) {
       EpubNavigationList navigationList =
-          ReadNavigationList(navigationListNode);
+          readNavigationList(navigationListNode);
       result.NavLists.add(navigationList);
     });
 
     return result;
   }
 
-  static EpubNavigationHead ReadNavigationHead(xml.XmlElement headNode) {
+  static EpubNavigationHead readNavigationHead(xml.XmlElement headNode) {
     EpubNavigationHead result = new EpubNavigationHead();
     result.Metadata = new List<EpubNavigationHeadMeta>();
 
@@ -163,7 +163,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationDocTitle ReadNavigationDocTitle(
+  static EpubNavigationDocTitle readNavigationDocTitle(
       xml.XmlElement docTitleNode) {
     EpubNavigationDocTitle result = new EpubNavigationDocTitle();
     result.Titles = new List<String>();
@@ -178,7 +178,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationDocAuthor ReadNavigationDocAuthor(
+  static EpubNavigationDocAuthor readNavigationDocAuthor(
       xml.XmlElement docAuthorNode) {
     EpubNavigationDocAuthor result = new EpubNavigationDocAuthor();
     result.Authors = new List<String>();
@@ -193,7 +193,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationMap ReadNavigationMap(xml.XmlElement navigationMapNode) {
+  static EpubNavigationMap readNavigationMap(xml.XmlElement navigationMapNode) {
     EpubNavigationMap result = new EpubNavigationMap();
     result.Points = new List<EpubNavigationPoint>();
     navigationMapNode.children
@@ -202,14 +202,14 @@ class NavigationReader {
         .forEach((xml.XmlElement navigationPointNode) {
       if (navigationPointNode.name.local.toLowerCase() == "navPoint") {
         EpubNavigationPoint navigationPoint =
-            ReadNavigationPoint(navigationPointNode);
+            readNavigationPoint(navigationPointNode);
         result.Points.add(navigationPoint);
       }
     });
     return result;
   }
 
-  static EpubNavigationPoint ReadNavigationPoint(
+  static EpubNavigationPoint readNavigationPoint(
       xml.XmlElement navigationPointNode) {
     EpubNavigationPoint result = new EpubNavigationPoint();
     navigationPointNode.attributes
@@ -241,17 +241,17 @@ class NavigationReader {
       switch (navigationPointChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              ReadNavigationLabel(navigationPointChildNode);
+              readNavigationLabel(navigationPointChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "content":
           EpubNavigationContent content =
-              ReadNavigationContent(navigationPointChildNode);
+              readNavigationContent(navigationPointChildNode);
           result.Content = content;
           break;
         case "navpoint":
           EpubNavigationPoint childNavigationPoint =
-              ReadNavigationPoint(navigationPointChildNode);
+              readNavigationPoint(navigationPointChildNode);
           result.ChildNavigationPoints.add(childNavigationPoint);
           break;
       }
@@ -269,7 +269,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationLabel ReadNavigationLabel(
+  static EpubNavigationLabel readNavigationLabel(
       xml.XmlElement navigationLabelNode) {
     EpubNavigationLabel result = new EpubNavigationLabel();
 
@@ -286,7 +286,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationContent ReadNavigationContent(
+  static EpubNavigationContent readNavigationContent(
       xml.XmlElement navigationContentNode) {
     EpubNavigationContent result = new EpubNavigationContent();
     navigationContentNode.attributes
@@ -309,7 +309,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationPageList ReadNavigationPageList(
+  static EpubNavigationPageList readNavigationPageList(
       xml.XmlElement navigationPageListNode) {
     EpubNavigationPageList result = new EpubNavigationPageList();
     result.Targets = new List<EpubNavigationPageTarget>();
@@ -319,7 +319,7 @@ class NavigationReader {
         .forEach((xml.XmlElement pageTargetNode) {
       if (pageTargetNode.name.local == "pageTarget") {
         EpubNavigationPageTarget pageTarget =
-            ReadNavigationPageTarget(pageTargetNode);
+            readNavigationPageTarget(pageTargetNode);
         result.Targets.add(pageTarget);
       }
     });
@@ -327,7 +327,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationPageTarget ReadNavigationPageTarget(
+  static EpubNavigationPageTarget readNavigationPageTarget(
       xml.XmlElement navigationPageTargetNode) {
     EpubNavigationPageTarget result = new EpubNavigationPageTarget();
     result.NavigationLabels = new List<EpubNavigationLabel>();
@@ -366,12 +366,12 @@ class NavigationReader {
       switch (navigationPageTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              ReadNavigationLabel(navigationPageTargetChildNode);
+              readNavigationLabel(navigationPageTargetChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "content":
           EpubNavigationContent content =
-              ReadNavigationContent(navigationPageTargetChildNode);
+              readNavigationContent(navigationPageTargetChildNode);
           result.Content = content;
           break;
       }
@@ -384,7 +384,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationList ReadNavigationList(
+  static EpubNavigationList readNavigationList(
       xml.XmlElement navigationListNode) {
     EpubNavigationList result = new EpubNavigationList();
     navigationListNode.attributes
@@ -406,12 +406,12 @@ class NavigationReader {
       switch (navigationListChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              ReadNavigationLabel(navigationListChildNode);
+              readNavigationLabel(navigationListChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "navTarget":
           EpubNavigationTarget navigationTarget =
-              ReadNavigationTarget(navigationListChildNode);
+              readNavigationTarget(navigationListChildNode);
           result.NavigationTargets.add(navigationTarget);
           break;
       }
@@ -423,7 +423,7 @@ class NavigationReader {
     return result;
   }
 
-  static EpubNavigationTarget ReadNavigationTarget(
+  static EpubNavigationTarget readNavigationTarget(
       xml.XmlElement navigationTargetNode) {
     EpubNavigationTarget result = new EpubNavigationTarget();
     navigationTargetNode.attributes
@@ -456,12 +456,12 @@ class NavigationReader {
       switch (navigationTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              ReadNavigationLabel(navigationTargetChildNode);
+              readNavigationLabel(navigationTargetChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "content":
           EpubNavigationContent content =
-              ReadNavigationContent(navigationTargetChildNode);
+              readNavigationContent(navigationTargetChildNode);
           result.Content = content;
           break;
       }

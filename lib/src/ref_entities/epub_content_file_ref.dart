@@ -18,25 +18,25 @@ abstract class EpubContentFileRef {
   EpubContentType ContentType;
   String ContentMimeType;
 
-  Future<List<int>> ReadContentAsBytesAsync() async {
+  Future<List<int>> readContentAsBytes() async {
     ArchiveFile contentFileEntry = getContentFileEntry();
     var content = openContentStream(contentFileEntry);
     return content;
   }
 
-  Future<String> ReadContentAsTextAsync() async {
-    List<int> contentStream = GetContentStream();
+  Future<String> readContentAsText() async {
+    List<int> contentStream = getContentStream();
     String result = UTF8.decode(contentStream);
     return result;
   }
 
-  List<int> GetContentStream() {
+  List<int> getContentStream() {
     return openContentStream(getContentFileEntry());
   }
 
   ArchiveFile getContentFileEntry() {
     String contentFilePath =
-        ZipPathUtils.Combine(epubBookRef.Schema.ContentDirectoryPath, FileName);
+        ZipPathUtils.combine(epubBookRef.Schema.ContentDirectoryPath, FileName);
     ArchiveFile contentFileEntry = epubBookRef.EpubArchive().files.firstWhere(
         (ArchiveFile x) => x.name == contentFilePath,
         orElse: () => null);

@@ -14,8 +14,8 @@ class EpubChapterRef {
   String Anchor;
   List<EpubChapterRef> SubChapters;
 
-  Future<String> ReadHtmlContentAsync() async {
-    return epubTextContentFileRef.ReadContentAsTextAsync();
+  Future<String> readHtmlContent() async {
+    return epubTextContentFileRef.readContentAsText();
   }
 
   String toString() {

@@ -17,13 +17,13 @@ main() async {
 
   List<int> bytes = await targetFile.readAsBytes();
   await test("Test Epub Ref", () async {
-    EpubBookRef epubRef = await EpubReader.OpenBookAsync(bytes);
+    EpubBookRef epubRef = await EpubReader.openBook(bytes);
 
     expect(epubRef.Author, equals("John S. Hittell"));
     expect(epubRef.Title, equals("Hittel on Gold Mines and Mining"));
   });
   await test("Test Epub Read", () async {
-    EpubBook epubRef = await EpubReader.ReadBookAsync(bytes);
+    EpubBook epubRef = await EpubReader.readBook(bytes);
 
     expect(epubRef.Author, equals("John S. Hittell"));
     expect(epubRef.Title, equals("Hittel on Gold Mines and Mining"));

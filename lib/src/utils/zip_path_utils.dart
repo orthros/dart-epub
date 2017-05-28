@@ -1,5 +1,5 @@
 class ZipPathUtils {
-  static String GetDirectoryPath(String filePath) {
+  static String getDirectoryPath(String filePath) {
     int lastSlashIndex = filePath.lastIndexOf('/');
     if (lastSlashIndex == -1)
       return "";
@@ -7,7 +7,7 @@ class ZipPathUtils {
       return filePath.substring(0, lastSlashIndex);
   }
 
-  static String Combine(String directory, String fileName) {
+  static String combine(String directory, String fileName) {
     if (directory == null || directory == "")
       return fileName;
     else

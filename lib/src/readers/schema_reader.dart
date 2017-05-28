@@ -11,19 +11,19 @@ import '../schema/opf/epub_package.dart';
 import '../utils/zip_path_utils.dart';
 
 class SchemaReader {
-  static Future<EpubSchema> ReadSchemaAsync(Archive epubArchive) async {
+  static Future<EpubSchema> readSchema(Archive epubArchive) async {
     EpubSchema result = new EpubSchema();
 
     String rootFilePath =
-        await RootFilePathReader.GetRootFilePathAsync(epubArchive);
-    String contentDirectoryPath = ZipPathUtils.GetDirectoryPath(rootFilePath);
+        await RootFilePathReader.getRootFilePath(epubArchive);
+    String contentDirectoryPath = ZipPathUtils.getDirectoryPath(rootFilePath);
     result.ContentDirectoryPath = contentDirectoryPath;
 
     EpubPackage package =
-        await PackageReader.ReadPackageAsync(epubArchive, rootFilePath);
+        await PackageReader.readPackage(epubArchive, rootFilePath);
     result.Package = package;
 
-    EpubNavigation navigation = await NavigationReader.ReadNavigationAsync(
+    EpubNavigation navigation = await NavigationReader.readNavigation(
         epubArchive, contentDirectoryPath, package);
     result.Navigation = navigation;
 

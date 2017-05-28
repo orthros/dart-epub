@@ -27,11 +27,11 @@ class EpubBookRef {
     return _epubArchive;
   }
 
-  Future<Image> ReadCoverAsync() async {
-    return await BookCoverReader.ReadBookCoverAsync(this);
+  Future<Image> readCover() async {
+    return await BookCoverReader.readBookCover(this);
   }
 
-  Future<List<EpubChapterRef>> GetChaptersAsync() async {
-    return await ChapterReader.GetChapters(this);
+  Future<List<EpubChapterRef>> getChapters() async {
+    return await ChapterReader.getChapters(this);
   }
 }
