@@ -7,7 +7,7 @@ import '../ref_entities/epub_text_content_file_ref.dart';
 import '../schema/opf/epub_manifest_item.dart';
 
 class ContentReader {
-  static EpubContentRef ParseContentMap(EpubBookRef bookRef) {
+  static EpubContentRef parseContentMap(EpubBookRef bookRef) {
     EpubContentRef result = new EpubContentRef();
     result.Html = new Map<String, EpubTextContentFileRef>();
     result.Css = new Map<String, EpubTextContentFileRef>();
@@ -20,7 +20,7 @@ class ContentReader {
       String fileName = manifestItem.Href;
       String contentMimeType = manifestItem.MediaType;
       EpubContentType contentType =
-          GetContentTypeByContentMimeType(contentMimeType);
+          getContentTypeByContentMimeType(contentMimeType);
       switch (contentType) {
         case EpubContentType.XHTML_1_1:
         case EpubContentType.CSS:
@@ -97,7 +97,7 @@ class ContentReader {
     return result;
   }
 
-  static EpubContentType GetContentTypeByContentMimeType(
+  static EpubContentType getContentTypeByContentMimeType(
       String contentMimeType) {
     switch (contentMimeType.toLowerCase()) {
       case "application/xhtml+xml":

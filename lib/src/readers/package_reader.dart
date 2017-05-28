@@ -20,7 +20,7 @@ import '../schema/opf/epub_spine_item_ref.dart';
 import '../schema/opf/epub_version.dart';
 
 class PackageReader {
-  static Future<EpubPackage> ReadPackageAsync(
+  static Future<EpubPackage> readPackage(
       Archive epubArchive, String rootFilePath) async {
     ArchiveFile rootFileEntry = epubArchive.files.firstWhere(
         (ArchiveFile testfile) => testfile.name == rootFilePath,
@@ -48,7 +48,7 @@ class PackageReader {
     if (metadataNode == null)
       throw new Exception(
           "EPUB parsing error: metadata not found in the package.");
-    EpubMetadata metadata = ReadMetadata(metadataNode, result.Version);
+    EpubMetadata metadata = readMetadata(metadataNode, result.Version);
     result.Metadata = metadata;
     xml.XmlElement manifestNode = packageNode
         .findElements("manifest", namespace: opfNamespace)
@@ -56,7 +56,7 @@ class PackageReader {
     if (manifestNode == null)
       throw new Exception(
           "EPUB parsing error: manifest not found in the package.");
-    EpubManifest manifest = ReadManifest(manifestNode);
+    EpubManifest manifest = readManifest(manifestNode);
     result.Manifest = manifest;
 
     xml.XmlElement spineNode = packageNode
@@ -65,19 +65,19 @@ class PackageReader {
     if (spineNode == null)
       throw new Exception(
           "EPUB parsing error: spine not found in the package.");
-    EpubSpine spine = ReadSpine(spineNode);
+    EpubSpine spine = readSpine(spineNode);
     result.Spine = spine;
     xml.XmlElement guideNode = packageNode
         .findElements("guide", namespace: opfNamespace)
         .firstWhere((xml.XmlElement elem) => elem != null, orElse: () => null);
     if (guideNode != null) {
-      EpubGuide guide = ReadGuide(guideNode);
+      EpubGuide guide = readGuide(guideNode);
       result.Guide = guide;
     }
     return result;
   }
 
-  static EpubMetadata ReadMetadata(
+  static EpubMetadata readMetadata(
       xml.XmlElement metadataNode, EpubVersion epubVersion) {
     EpubMetadata result = new EpubMetadata();
     result.Titles = new List<String>();
@@ -105,7 +105,7 @@ class PackageReader {
           result.Titles.add(innerText);
           break;
         case "creator":
-          EpubMetadataCreator creator = ReadMetadataCreator(metadataItemNode);
+          EpubMetadataCreator creator = readMetadataCreator(metadataItemNode);
           result.Creators.add(creator);
           break;
         case "subject":
@@ -119,11 +119,11 @@ class PackageReader {
           break;
         case "contributor":
           EpubMetadataContributor contributor =
-              ReadMetadataContributor(metadataItemNode);
+              readMetadataContributor(metadataItemNode);
           result.Contributors.add(contributor);
           break;
         case "date":
-          EpubMetadataDate date = ReadMetadataDate(metadataItemNode);
+          EpubMetadataDate date = readMetadataDate(metadataItemNode);
           result.Dates.add(date);
           break;
         case "type":
@@ -134,7 +134,7 @@ class PackageReader {
           break;
         case "identifier":
           EpubMetadataIdentifier identifier =
-              ReadMetadataIdentifier(metadataItemNode);
+              readMetadataIdentifier(metadataItemNode);
           result.Identifiers.add(identifier);
           break;
         case "source":
@@ -154,10 +154,10 @@ class PackageReader {
           break;
         case "meta":
           if (epubVersion == EpubVersion.Epub2) {
-            EpubMetadataMeta meta = ReadMetadataMetaVersion2(metadataItemNode);
+            EpubMetadataMeta meta = readMetadataMetaVersion2(metadataItemNode);
             result.MetaItems.add(meta);
           } else if (epubVersion == EpubVersion.Epub3) {
-            EpubMetadataMeta meta = ReadMetadataMetaVersion3(metadataItemNode);
+            EpubMetadataMeta meta = readMetadataMetaVersion3(metadataItemNode);
             result.MetaItems.add(meta);
           }
           break;
@@ -166,7 +166,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubMetadataCreator ReadMetadataCreator(
+  static EpubMetadataCreator readMetadataCreator(
       xml.XmlElement metadataCreatorNode) {
     EpubMetadataCreator result = new EpubMetadataCreator();
     metadataCreatorNode.attributes
@@ -185,7 +185,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubMetadataContributor ReadMetadataContributor(
+  static EpubMetadataContributor readMetadataContributor(
       xml.XmlElement metadataContributorNode) {
     EpubMetadataContributor result = new EpubMetadataContributor();
     metadataContributorNode.attributes
@@ -204,7 +204,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubMetadataDate ReadMetadataDate(xml.XmlElement metadataDateNode) {
+  static EpubMetadataDate readMetadataDate(xml.XmlElement metadataDateNode) {
     EpubMetadataDate result = new EpubMetadataDate();
     String eventAttribute = metadataDateNode.getAttribute("event",
         namespace: metadataDateNode.name.namespaceUri);
@@ -214,7 +214,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubMetadataIdentifier ReadMetadataIdentifier(
+  static EpubMetadataIdentifier readMetadataIdentifier(
       xml.XmlElement metadataIdentifierNode) {
     EpubMetadataIdentifier result = new EpubMetadataIdentifier();
     metadataIdentifierNode.attributes
@@ -233,7 +233,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubMetadataMeta ReadMetadataMetaVersion2(
+  static EpubMetadataMeta readMetadataMetaVersion2(
       xml.XmlElement metadataMetaNode) {
     EpubMetadataMeta result = new EpubMetadataMeta();
     metadataMetaNode.attributes
@@ -251,7 +251,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubMetadataMeta ReadMetadataMetaVersion3(
+  static EpubMetadataMeta readMetadataMetaVersion3(
       xml.XmlElement metadataMetaNode) {
     EpubMetadataMeta result = new EpubMetadataMeta();
     metadataMetaNode.attributes
@@ -276,7 +276,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubManifest ReadManifest(xml.XmlElement manifestNode) {
+  static EpubManifest readManifest(xml.XmlElement manifestNode) {
     EpubManifest result = new EpubManifest();
     result.Items = new List<EpubManifestItem>();
     manifestNode.children
@@ -326,7 +326,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubSpine ReadSpine(xml.XmlElement spineNode) {
+  static EpubSpine readSpine(xml.XmlElement spineNode) {
     EpubSpine result = new EpubSpine();
     result.Items = new List<EpubSpineItemRef>();
     String tocAttribute = spineNode.getAttribute("toc");
@@ -352,7 +352,7 @@ class PackageReader {
     return result;
   }
 
-  static EpubGuide ReadGuide(xml.XmlElement guideNode) {
+  static EpubGuide readGuide(xml.XmlElement guideNode) {
     EpubGuide result = new EpubGuide();
     result.Items = new List<EpubGuideReference>();
     guideNode.children

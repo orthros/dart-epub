@@ -4,11 +4,11 @@ import '../ref_entities/epub_text_content_file_ref.dart';
 import '../schema/navigation/epub_navigation_point.dart';
 
 class ChapterReader {
-  static List<EpubChapterRef> GetChapters(EpubBookRef bookRef) {
-    return GetChaptersImpl(bookRef, bookRef.Schema.Navigation.NavMap.Points);
+  static List<EpubChapterRef> getChapters(EpubBookRef bookRef) {
+    return getChaptersImpl(bookRef, bookRef.Schema.Navigation.NavMap.Points);
   }
 
-  static List<EpubChapterRef> GetChaptersImpl(
+  static List<EpubChapterRef> getChaptersImpl(
       EpubBookRef bookRef, List<EpubNavigationPoint> navigationPoints) {
     List<EpubChapterRef> result = new List<EpubChapterRef>();
     navigationPoints.forEach((EpubNavigationPoint navigationPoint) {
@@ -38,7 +38,7 @@ class ChapterReader {
       chapterRef.Anchor = anchor;
       chapterRef.Title = navigationPoint.NavigationLabels.first.Text;
       chapterRef.SubChapters =
-          GetChaptersImpl(bookRef, navigationPoint.ChildNavigationPoints);
+          getChaptersImpl(bookRef, navigationPoint.ChildNavigationPoints);
 
       result.add(chapterRef);
     });

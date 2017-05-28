@@ -8,7 +8,7 @@ import '../schema/opf/epub_manifest_item.dart';
 import '../schema/opf/epub_metadata_meta.dart';
 
 class BookCoverReader {
-  static Future<images.Image> ReadBookCoverAsync(EpubBookRef bookRef) async {
+  static Future<images.Image> readBookCover(EpubBookRef bookRef) async {
     List<EpubMetadataMeta> metaItems =
         bookRef.Schema.Package.Metadata.MetaItems;
     if (metaItems == null || metaItems.length == 0) return null;
@@ -39,7 +39,7 @@ class BookCoverReader {
 
     coverImageContentFileRef = bookRef.Content.Images[coverManifestItem.Href];
     List<int> coverImageContent =
-        await coverImageContentFileRef.ReadContentAsBytesAsync();
+        await coverImageContentFileRef.readContentAsBytes();
     images.Image retval = images.decodeImage(coverImageContent);
     return retval;
   }
