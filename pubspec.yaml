@@ -1,5 +1,5 @@
 name: epub
-version: 1.2.0
+version: 1.2.1
 author: Colin Nelson <colin@ifdevthentalk.com>
 description: Epub Parser for Dart
 homepage: https://github.com/orthros/dart-epub
