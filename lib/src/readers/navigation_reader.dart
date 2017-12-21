@@ -200,7 +200,7 @@ class NavigationReader {
         .where((xml.XmlNode node) => node is xml.XmlElement)
         .map((xml.XmlNode node) => node as xml.XmlElement)
         .forEach((xml.XmlElement navigationPointNode) {
-      if (navigationPointNode.name.local.toLowerCase() == "navPoint") {
+      if (navigationPointNode.name.local.toLowerCase() == "navpoint") {
         EpubNavigationPoint navigationPoint =
             readNavigationPoint(navigationPointNode);
         result.Points.add(navigationPoint);
@@ -222,7 +222,7 @@ class NavigationReader {
         case "class":
           result.Class = attributeValue;
           break;
-        case "playOrder":
+        case "playorder":
           result.PlayOrder = attributeValue;
           break;
       }
@@ -409,7 +409,7 @@ class NavigationReader {
               readNavigationLabel(navigationListChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
-        case "navTarget":
+        case "navtarget":
           EpubNavigationTarget navigationTarget =
               readNavigationTarget(navigationListChildNode);
           result.NavigationTargets.add(navigationTarget);
@@ -439,7 +439,7 @@ class NavigationReader {
         case "class":
           result.Class = attributeValue;
           break;
-        case "playOrder":
+        case "playorder":
           result.PlayOrder = attributeValue;
           break;
       }
