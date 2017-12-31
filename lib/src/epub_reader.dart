@@ -76,10 +76,9 @@ class EpubReader {
       result.AllFiles[key] = value;
     });
 
-    await contentRef.AllFiles
-        .forEach((String key, EpubContentFileRef value) async {
+    await Future.forEach(contentRef.AllFiles.keys, (key) async {
       if (!result.AllFiles.containsKey(key)) {
-        result.AllFiles[key] = await readByteContentFile(value);
+        result.AllFiles[key] = await readByteContentFile(contentRef.AllFiles[key]);
       }
     });
 
@@ -90,8 +89,9 @@ class EpubReader {
       Map<String, EpubTextContentFileRef> textContentFileRefs) async {
     Map<String, EpubTextContentFile> result =
         new Map<String, EpubTextContentFile>();
-    await textContentFileRefs
-        .forEach((String key, EpubContentFileRef value) async {
+
+    await Future.forEach(textContentFileRefs.keys, (key) async {
+      EpubContentFileRef value = textContentFileRefs[key];
       EpubTextContentFile textContentFile = new EpubTextContentFile();
       textContentFile.FileName = value.FileName;
       textContentFile.ContentType = value.ContentType;
@@ -106,9 +106,8 @@ class EpubReader {
       Map<String, EpubByteContentFileRef> byteContentFileRefs) async {
     Map<String, EpubByteContentFile> result =
         new Map<String, EpubByteContentFile>();
-    byteContentFileRefs
-        .forEach((String key, EpubByteContentFileRef value) async {
-      result[key] = await readByteContentFile(value);
+    await Future.forEach(byteContentFileRefs.keys, (key) async {
+      result[key] = await readByteContentFile(byteContentFileRefs[key]);
     });
     return result;
   }
@@ -128,7 +127,7 @@ class EpubReader {
   static Future<List<EpubChapter>> readChapters(
       List<EpubChapterRef> chapterRefs) async {
     List<EpubChapter> result = new List<EpubChapter>();
-    await chapterRefs.forEach((EpubChapterRef chapterRef) async {
+    await Future.forEach(chapterRefs, (EpubChapterRef chapterRef) async {
       EpubChapter chapter = new EpubChapter();
 
       chapter.Title = chapterRef.Title;
