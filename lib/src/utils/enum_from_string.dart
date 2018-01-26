@@ -1,11 +1,18 @@
-import 'dart:mirrors';
 
 class EnumFromString<T> {
+  List<T> enumValues;
+
+  EnumFromString(List<T> this.enumValues);
+
   T get(String value) {
-    return (reflectType(T) as ClassMirror)
-        .getField(#values)
-        .reflectee
-        .firstWhere((e) =>
-            e.toString().split('.')[1].toUpperCase() == value.toUpperCase());
+    value = "$T.$value";
+    try {
+      var x = this.enumValues
+          .firstWhere((f)=>
+              f.toString().toUpperCase() == value.toUpperCase());
+      return x;
+    } catch(e) {
+      return null;
+    }
   }
 }
