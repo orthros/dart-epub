@@ -51,7 +51,8 @@ main(List<String> args) async {
 // All images in the book (file name is the key)
   Map<String, EpubByteContentFile> images = bookContent.Images;
 
-  EpubByteContentFile firstImage = images.isNotEmpty ? images.values.first : null;
+  EpubByteContentFile firstImage =
+      images.isNotEmpty ? images.values.first : null;
 
 // Content type (e.g. EpubContentType.IMAGE_JPEG, EpubContentType.IMAGE_PNG)
   EpubContentType contentType = firstImage?.ContentType;
