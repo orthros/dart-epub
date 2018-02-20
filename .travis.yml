@@ -7,5 +7,6 @@ script: ./tool/travis.sh
 deploy:
   provider: script
   script: ./tool/publish.sh
+  skip_cleanup: true
   on:
     branch: master
