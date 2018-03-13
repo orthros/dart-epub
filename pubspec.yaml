@@ -6,11 +6,10 @@ homepage: https://github.com/orthros/dart-epub
 environment:
   sdk: ">=1.21.0 <2.0.1"
 dependencies:
-  async: "^1.8.0"
+  async: ">=1.8.0 <2.1.0"
   archive: "^1.0.33"
-  xml: "^2.6.0"
-  image: "^1.1.29"
-dev_dependencies:  
-  scheduled_test: "^0.12.0"
+  xml: ">=2.6.0 <4.0.0"
+  image: "^1.1.30"
+dev_dependencies:
   test: "^0.12.0"
   path: "^1.5.1"
