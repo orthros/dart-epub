@@ -29,7 +29,7 @@ class PackageReader {
       throw new Exception(
           "EPUB parsing error: root file not found in archive.");
     xml.XmlDocument containerDocument =
-        xml.parse(UTF8.decode(rootFileEntry.content));
+        xml.parse(utf8.decode(rootFileEntry.content));
     String opfNamespace = "http://www.idpf.org/2007/opf";
     xml.XmlElement packageNode = containerDocument
         .findElements("package", namespace: opfNamespace)

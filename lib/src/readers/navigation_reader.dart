@@ -52,7 +52,7 @@ class NavigationReader {
     }
 
     xml.XmlDocument containerDocument =
-        xml.parse(UTF8.decode(tocFileEntry.content));
+        xml.parse(utf8.decode(tocFileEntry.content));
 
     String ncxNamespace = "http://www.daisy.org/z3986/2005/ncx/";
     xml.XmlElement ncxNode = containerDocument
@@ -342,7 +342,8 @@ class NavigationReader {
           result.Value = attributeValue;
           break;
         case "type":
-          var converter = new EnumFromString<EpubNavigationPageTargetType>(EpubNavigationPageTargetType.values);
+          var converter = new EnumFromString<EpubNavigationPageTargetType>(
+              EpubNavigationPageTargetType.values);
           EpubNavigationPageTargetType type = converter.get(attributeValue);
           result.Type = type;
           break;
