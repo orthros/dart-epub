@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.8] - 2018-03-13
+### Added
+- Added unit tests for Images
+### Changed
+- Updated dependencies
+
 ## [1.2.7] - 2018-03-13
 ### Added
 - Added upper limit of Dart version to 2.0.1
