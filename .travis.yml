@@ -2,6 +2,7 @@ language: dart
 sudo: false
 before_script:
  - chmod +x ./tool/travis.sh
+ - chmod +x ./tool/publish.sh
  - pub get
 script: ./tool/travis.sh
 deploy:
