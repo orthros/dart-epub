@@ -11,3 +11,4 @@ dartanalyzer --strong --fatal-warnings \
 # Run the tests.
 dart -c test/enum_string_test.dart
 dart -c test/epub_reader_tests.dart
+dart -c test/epub_image_tests.dart
