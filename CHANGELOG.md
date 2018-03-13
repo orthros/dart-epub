@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.6] - 2018-03-12
+### Added
+- Added Support for Dart 2.0
+
 ## [1.2.5] - 2018-02-20
 ### Added
 - A publish step in the travis deploy
