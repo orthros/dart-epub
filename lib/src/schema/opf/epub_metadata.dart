@@ -20,5 +20,5 @@ class EpubMetadata {
   List<String> Relations;
   List<String> Coverages;
   List<String> Rights;
-  List<EpubMetadataMeta> MetaItems;  
+  List<EpubMetadataMeta> MetaItems;
 }

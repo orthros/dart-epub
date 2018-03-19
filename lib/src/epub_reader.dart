@@ -78,7 +78,8 @@ class EpubReader {
 
     await Future.forEach(contentRef.AllFiles.keys, (key) async {
       if (!result.AllFiles.containsKey(key)) {
-        result.AllFiles[key] = await readByteContentFile(contentRef.AllFiles[key]);
+        result.AllFiles[key] =
+            await readByteContentFile(contentRef.AllFiles[key]);
       }
     });
 
