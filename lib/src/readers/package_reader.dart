@@ -258,6 +258,9 @@ class PackageReader {
         .forEach((xml.XmlAttribute metadataMetaNodeAttribute) {
       String attributeValue = metadataMetaNodeAttribute.value;
       switch (metadataMetaNodeAttribute.name.local.toLowerCase()) {
+        case "name":
+          result.Name = attributeValue;
+          break;
         case "id":
           result.Id = attributeValue;
           break;
@@ -273,6 +276,9 @@ class PackageReader {
       }
     });
     result.Content = metadataMetaNode.text;
+    if (result.Content == null || result.Content.isEmpty) {
+      result.Content = metadataMetaNode.getAttribute('content');
+    }
     return result;
   }
 
