@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.10] - 2018-07-29
+### Fixed
+- Merged pull request #15 from ShadowJonathan/dev. 
+    - Fixes issue with parsing schema by removing `opf:` namespace
+
 ## [1.2.9] - 2018-03-13
 ### Changed
 - Ran code through `dartfmt` as per analysis by `pana`
