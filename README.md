@@ -22,7 +22,7 @@ var targetFile = new io.File(fullPath);
 List<int> bytes = await targetFile.readAsBytes();
 
 
-// Opens a book and reads all of its content into the memory
+// Opens a book and reads all of its content into memory
 EpubBook epubBook = await EpubReader.readBook(bytes);
             
 // COMMON PROPERTIES
