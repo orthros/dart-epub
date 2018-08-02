@@ -24,7 +24,6 @@ class EpubReader {
     Archive epubArchive = new ZipDecoder().decodeBytes(bytes);
 
     EpubBookRef bookRef = new EpubBookRef(epubArchive);
-    bookRef.FilePath = "";
     bookRef.Schema = await SchemaReader.readSchema(epubArchive);
     bookRef.Title = bookRef.Schema.Package.Metadata.Titles
         .firstWhere((String name) => true, orElse: () => "");
@@ -41,7 +40,6 @@ class EpubReader {
     EpubBook result = new EpubBook();
 
     EpubBookRef epubBookRef = await openBook(bytes);
-    result.FilePath = epubBookRef.FilePath;
     result.Schema = epubBookRef.Schema;
     result.Title = epubBookRef.Title;
     result.AuthorList = epubBookRef.AuthorList;

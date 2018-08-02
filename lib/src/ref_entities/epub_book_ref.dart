@@ -16,7 +16,6 @@ class EpubBookRef {
     this._epubArchive = epubArchive;
   }
 
-  String FilePath;
   String Title;
   String Author;
   List<String> AuthorList;
