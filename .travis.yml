@@ -9,9 +9,9 @@ before_script:
  - pub get
 script: ./tool/travis.sh
 deploy:
-  dart: dev
   provider: script
   script: ./tool/publish.sh
   skip_cleanup: true
   on:
     branch: master
+    dart: dev
