@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:archive/archive.dart';
 import 'package:xml/xml.dart' as xml;
+import 'package:dart2_constant/convert.dart' as convert;
 
 import '../schema/opf/epub_guide.dart';
 import '../schema/opf/epub_guide_reference.dart';
@@ -29,7 +29,7 @@ class PackageReader {
       throw new Exception(
           "EPUB parsing error: root file not found in archive.");
     xml.XmlDocument containerDocument =
-        xml.parse(UTF8.decode(rootFileEntry.content));
+        xml.parse(convert.utf8.decode(rootFileEntry.content));
     String opfNamespace = "http://www.idpf.org/2007/opf";
     xml.XmlElement packageNode = containerDocument
         .findElements("package", namespace: opfNamespace)
