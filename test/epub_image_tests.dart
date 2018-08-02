@@ -15,7 +15,7 @@ main() async {
     throw new Exception("Specified epub file not found: ${fullPath}");
   }
   List<int> bytes = await targetFile.readAsBytes();
-  await test("Test Epub Image", () async {
+  test("Test Epub Image", () async {
     EpubBook epubRef = await EpubReader.readBook(bytes);
 
     expect(epubRef.CoverImage, isNotNull);

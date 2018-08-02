@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.0] - 2018-08-01
+### Added
+- Package now supports Dart 2!
+### Removed
+- Removed support for Dart 1.2.21
+
 ## [1.2.10] - 2018-07-29
 ### Fixed
 - Merged pull request #15 from ShadowJonathan/dev. 
