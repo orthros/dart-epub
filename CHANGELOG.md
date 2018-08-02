@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.1] - 2018-08-01
+### Changed
+- Updates to Travis configuration and publishing
+### Removed
+- Removed unused variable `FilePath` from `EpubBook` and `EpubBookRef`
+
 ## [1.3.0] - 2018-08-01
 ### Added
 - Package now supports Dart 2!

@@ -4,7 +4,6 @@ import 'epub_schema.dart';
 import 'package:image/image.dart';
 
 class EpubBook {
-  String FilePath;
   String Title;
   String Author;
   List<String> AuthorList;
