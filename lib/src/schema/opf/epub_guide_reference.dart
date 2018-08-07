@@ -5,9 +5,8 @@ class EpubGuideReference {
   String Title;
   String Href;
 
-  String toString() {
-    return "Type: ${Type}, Href: ${Href}";
-  }
+  @override
+  int get hashCode => hash3(Type.hashCode, Title.hashCode, Href.hashCode);
 
   bool operator ==(other) {
     var otherAs = other as EpubGuideReference;
@@ -20,6 +19,7 @@ class EpubGuideReference {
         Href == otherAs.Href;
   }
 
-  @override
-  int get hashCode => hash3(Type.hashCode, Title.hashCode, Href.hashCode);
+  String toString() {
+    return "Type: ${Type}, Href: ${Href}";
+  }
 }
