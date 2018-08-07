@@ -8,9 +8,10 @@ environment:
 dependencies:
   async: ">=1.8.0 <2.1.0"
   archive: "^2.0.0"
+  quiver: '>=2.0.0 <3.0.0'
   xml: ">=2.6.0 <4.0.0"
   image: ">=1.1.33 <3.0.0"
-  dart2_constant: ^1.0.1
+  dart2_constant: ^1.0.1  
 dev_dependencies:
   test: "^1.0.0"
   path: "^1.5.1"
