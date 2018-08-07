@@ -20,5 +20,6 @@ class EpubGuideReference {
         Href == otherAs.Href;
   }
 
+  @override
   int get hashCode => hash3(Type.hashCode, Title.hashCode, Href.hashCode);
 }
