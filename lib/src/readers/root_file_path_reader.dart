@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:archive/archive.dart';
-import 'package:xml/xml.dart' as xml;
 import 'package:dart2_constant/convert.dart' as convert;
+import 'package:xml/xml.dart' as xml;
 
 class RootFilePathReader {
   static Future<String> getRootFilePath(Archive epubArchive) async {
