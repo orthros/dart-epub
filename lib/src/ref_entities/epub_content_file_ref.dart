@@ -47,10 +47,11 @@ abstract class EpubContentFileRef {
   }
 
   List<int> openContentStream(ArchiveFile contentFileEntry) {
-    List<int> contentStream = contentFileEntry.content;
-    if (contentStream == null)
+    List<int> contentStream = new List<int>();
+    if (contentFileEntry.content == null)
       throw new Exception(
           'Incorrect EPUB file: content file \"${FileName}\" specified in manifest is not found.');
+    contentStream.addAll(contentFileEntry.content);
     return contentStream;
   }
 }
