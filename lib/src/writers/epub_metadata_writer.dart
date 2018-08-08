@@ -27,10 +27,10 @@ class EpubMetadataWriter {
               }))
           ..Subjects.forEach((item) =>
               builder.element("subject", namespace: _dc_namespace, nest: item))
-          ..Publishers.forEach((item) =>
-              builder.element("publisher", namespace: _dc_namespace, nest: item))
-          ..Contributors.forEach((item) =>
-              builder.element("contributor", namespace: _dc_namespace, nest: () {
+          ..Publishers.forEach((item) => builder.element("publisher",
+              namespace: _dc_namespace, nest: item))
+          ..Contributors.forEach((item) => builder
+                  .element("contributor", namespace: _dc_namespace, nest: () {
                 if (item.Role != null)
                   builder.attribute("role", item.Role,
                       namespace: _opf_namespace);
@@ -50,8 +50,8 @@ class EpubMetadataWriter {
               }))
           ..Types.forEach((type) =>
               builder.element("type", namespace: _dc_namespace, nest: type))
-          ..Formats.forEach((format) =>
-              builder.element("format", namespace: _dc_namespace, nest: format))
+          ..Formats
+              .forEach((format) => builder.element("format", namespace: _dc_namespace, nest: format))
           ..Identifiers.forEach((id) => builder.element("identifier", namespace: _dc_namespace, nest: () {
                 if (id.Id != null) builder.attribute("id", id.Id);
                 if (id.Scheme != null)

@@ -26,24 +26,27 @@ class EpubMetadata {
   List<EpubMetadataMeta> MetaItems;
 
   @override
-  int get hashCode => hashObjects([
-        Titles.hashCode,
-        Creators.hashCode,
-        Subjects.hashCode,
-        Description.hashCode,
-        Publishers.hashCode,
-        Contributors.hashCode,
-        Dates.hashCode,
-        Types.hashCode,
-        Formats.hashCode,
-        Identifiers.hashCode,
-        Sources.hashCode,
-        Languages.hashCode,
-        Relations.hashCode,
-        Coverages.hashCode,
-        Rights.hashCode,
-        MetaItems.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..addAll(Titles.map((title) => title.hashCode))
+      ..addAll(Creators.map((creator) => creator.hashCode))
+      ..addAll(Subjects.map((subject) => subject.hashCode))
+      ..addAll(Publishers.map((publisher) => publisher.hashCode))
+      ..addAll(Contributors.map((contributor) => contributor.hashCode))
+      ..addAll(Dates.map((date) => date.hashCode))
+      ..addAll(Types.map((type) => type.hashCode))
+      ..addAll(Formats.map((format) => format.hashCode))
+      ..addAll(Identifiers.map((identifier) => identifier.hashCode))
+      ..addAll(Sources.map((source) => source.hashCode))
+      ..addAll(Languages.map((language) => language.hashCode))
+      ..addAll(Relations.map((relation) => relation.hashCode))
+      ..addAll(Coverages.map((coverage) => coverage.hashCode))
+      ..addAll(Rights.map((right) => right.hashCode))
+      ..addAll(MetaItems.map((metaItem) => metaItem.hashCode))
+      ..add(Description.hashCode);
+
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubMetadata;

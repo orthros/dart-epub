@@ -20,7 +20,8 @@ abstract class EpubContentFileRef {
   }
 
   @override
-  int get hashCode => hash3(FileName.hashCode, ContentMimeType.hashCode,ContentType.hashCode);
+  int get hashCode =>
+      hash3(FileName.hashCode, ContentMimeType.hashCode, ContentType.hashCode);
 
   bool operator ==(other) {
     return (other is EpubContentFileRef &&
