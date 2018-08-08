@@ -7,8 +7,13 @@ class EpubSpine {
   String TableOfContents;
   List<EpubSpineItemRef> Items;
 
-  @override 
-  int get hashCode => hash2(TableOfContents.hashCode, Items.hashCode);
+  @override
+  int get hashCode {
+    var objs = []
+      ..add(TableOfContents.hashCode)
+      ..addAll(Items.map((item) => item.hashCode));
+    return hashObjects(objs);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubSpine;
