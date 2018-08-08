@@ -1,7 +1,7 @@
 # dart-epub
 [![Build Status](https://travis-ci.org/orthros/dart-epub.svg?branch=master)](https://travis-ci.org/orthros/dart-epub)
 
-Epub Reader for Dart inspired by [this fantastic C# Epub Reader](https://github.com/versfx/EpubReader)
+Epub Reader and Writer for Dart inspired by [this fantastic C# Epub Reader](https://github.com/versfx/EpubReader)
 
 This does not rely on the ```dart:io``` package in any way, so it is avilable for both desktop and web-based implementations
 
@@ -9,7 +9,7 @@ This does not rely on the ```dart:io``` package in any way, so it is avilable fo
 Add the package to the ```dependencies``` section of your pubspec.yaml
 ```
 dependencies:
-  epub: ^1.2.0
+  epub: ^2.0.0
 ```
 
 ## Example
@@ -121,4 +121,10 @@ navigation.Head.Metadata.forEach((EpubNavigationHeadMeta meta){
   String metadataItemName = meta.Name;
   String metadataItemContent = meta.Content;
 });
+
+// Writing Data
+var written = await EpubWriter.writeBook(epubBook);
+
+// You can even re-read the book into a new object! 
+var bookRoundTrip = await EpubReader.readBook(written);
 ```
