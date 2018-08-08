@@ -4,7 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## Unreleased
+
+## [2.0.0] - 2018-08-07
+### Added
+- Added support for writing Epubs back to Byte Arrays
+- Tests for writing Epubs
+
+### Changed
+- Epub Readers and Writers now have their == operator and hashCode get-er overridden
+
+### Fixed
+- Fixed an issue when reading EpubContentFileRef
 
 ## [1.3.2] - 2018-08-01
 ### Changed

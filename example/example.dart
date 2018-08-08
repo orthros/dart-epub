@@ -105,4 +105,9 @@ main(List<String> args) async {
     String metadataItemName = meta.Name;
     String metadataItemContent = meta.Content;
   });
+
+  // Write the Book
+  var written = EpubWriter.writeBook(epubBook);
+  // Read the book into a new object!
+  var newBook = await EpubReader.readBook(written);
 }
