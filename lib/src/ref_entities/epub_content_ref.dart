@@ -12,14 +12,30 @@ class EpubContentRef {
   Map<String, EpubByteContentFileRef> Fonts;
   Map<String, EpubContentFileRef> AllFiles;
 
+  EpubContentRef() {
+    Html = new Map<String, EpubTextContentFileRef>();
+    Css = new Map<String, EpubTextContentFileRef>();
+    Images = new Map<String, EpubByteContentFileRef>();
+    Fonts = new Map<String, EpubByteContentFileRef>();
+    AllFiles = new Map<String, EpubContentFileRef>();
+  }
+
   @override
-  int get hashCode => hashObjects([
-        Html.hashCode,
-        Css.hashCode,
-        Images.hashCode,
-        Fonts.hashCode,
-        AllFiles.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..addAll(Html.keys.map((key) => key.hashCode))
+      ..addAll(Html.values.map((value) => value.hashCode))
+      ..addAll(Css.keys.map((key) => key.hashCode))
+      ..addAll(Css.values.map((value) => value.hashCode))
+      ..addAll(Images.keys.map((key) => key.hashCode))
+      ..addAll(Images.values.map((value) => value.hashCode))
+      ..addAll(Fonts.keys.map((key) => key.hashCode))
+      ..addAll(Fonts.values.map((value) => value.hashCode))
+      ..addAll(AllFiles.keys.map((key) => key.hashCode))
+      ..addAll(AllFiles.values.map((value) => value.hashCode));
+
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubContentRef;
