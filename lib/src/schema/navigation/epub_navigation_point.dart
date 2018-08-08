@@ -13,14 +13,16 @@ class EpubNavigationPoint {
   List<EpubNavigationPoint> ChildNavigationPoints;
 
   @override
-  int get hashCode => hashObjects([
-        Id.hashCode,
-        Class.hashCode,
-        PlayOrder.hashCode,
-        NavigationLabels.hashCode,
-        Content.hashCode,
-        ChildNavigationPoints.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..add(Id.hashCode)
+      ..add(Class.hashCode)
+      ..add(PlayOrder.hashCode)
+      ..add(Content.hashCode)
+      ..addAll(NavigationLabels.map((label) => label.hashCode))
+      ..addAll(ChildNavigationPoints.map((point) => point.hashCode));
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubNavigationPoint;
