@@ -1,6 +1,6 @@
 import 'package:epub/src/schema/opf/epub_metadata.dart';
 import 'package:epub/src/schema/opf/epub_version.dart';
-import 'package:xml/xml/builder.dart';
+import 'package:xml/xml.dart';
 
 class EpubMetadataWriter {
   static const _dc_namespace = "http://purl.org/dc/elements/1.1/";

@@ -1,5 +1,5 @@
 import 'package:epub/src/schema/opf/epub_manifest.dart';
-import 'package:xml/xml/builder.dart';
+import 'package:xml/xml.dart';
 
 class EpubManifestWriter {
   static void writeManifest(XmlBuilder builder, EpubManifest manifest) {

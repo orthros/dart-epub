@@ -1,5 +1,5 @@
 import 'package:epub/src/schema/opf/epub_guide.dart';
-import 'package:xml/xml/builder.dart';
+import 'package:xml/xml.dart';
 
 class EpubGuideWriter {
   static void writeGuide(XmlBuilder builder, EpubGuide guide) {
