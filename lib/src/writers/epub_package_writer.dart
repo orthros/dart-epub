@@ -3,7 +3,7 @@ import 'package:epub/src/schema/opf/epub_version.dart';
 import 'package:epub/src/writers/epub_guide_writer.dart';
 import 'package:epub/src/writers/epub_manifest_writer.dart';
 import 'package:epub/src/writers/epub_spine_writer.dart';
-import 'package:xml/src/xml/builder.dart';
+import 'package:xml/src/xml/builder.dart' show XmlBuilder;
 import 'epub_metadata_writer.dart';
 
 class EpubPackageWriter {

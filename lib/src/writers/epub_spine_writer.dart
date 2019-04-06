@@ -1,5 +1,5 @@
 import 'package:epub/src/schema/opf/epub_spine.dart';
-import 'package:xml/src/xml/builder.dart';
+import 'package:xml/src/xml/builder.dart' show XmlBuilder;
 
 class EpubSpineWriter {
   static void writeSpine(XmlBuilder builder, EpubSpine spine) {
