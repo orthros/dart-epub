@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [2.0.3] - 2019-05-15
+### Changed
+- Raised `sdk` version constraint to 2.0.0
+- Raised constraint on `async` to 3.0.0
+### Fixed
+- Merged pull request #40 by vblago. 
+    - Fixes Undefined class 'XmlBuilder'
+
 ## [2.0.2] - 2018-08-07
 ### Changed
 - Lowered sdk version constraint to 2.0.0-dev.61.0
