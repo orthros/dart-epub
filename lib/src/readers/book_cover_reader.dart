@@ -11,7 +11,7 @@ class BookCoverReader {
   static Future<images.Image> readBookCover(EpubBookRef bookRef) async {
     List<EpubMetadataMeta> metaItems =
         bookRef.Schema.Package.Metadata.MetaItems;
-    if (metaItems == null || metaItems.length == 0) return null;
+    if (metaItems == null || metaItems.isEmpty) return null;
 
     EpubMetadataMeta coverMetaItem = metaItems.firstWhere(
         (EpubMetadataMeta metaItem) =>

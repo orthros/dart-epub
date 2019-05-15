@@ -265,7 +265,7 @@ class NavigationReader {
           break;
       }
     });
-    if (result.NavigationLabels.length == 0) {
+    if (result.NavigationLabels.isEmpty) {
       throw new Exception(
           "Incorrect EPUB navigation page target: at least one navLabel element is required.");
     }
@@ -356,7 +356,7 @@ class NavigationReader {
           break;
       }
     });
-    if (result.NavigationLabels.length == 0) {
+    if (result.NavigationLabels.isEmpty) {
       throw new Exception(
           "Incorrect EPUB navigation page target: at least one navLabel element is required.");
     }
@@ -412,7 +412,7 @@ class NavigationReader {
       }
     });
 
-    if (!(result.NavigationLabels.length > 0)) {
+    if (result.NavigationLabels.isEmpty) {
       throw new Exception(
           "EPUB parsing error: navigation point ${result.Id} should contain at least one navigation label.");
     }
@@ -467,7 +467,7 @@ class NavigationReader {
           break;
       }
     });
-    if (result.NavigationLabels.length == 0) {
+    if (result.NavigationLabels.isEmpty) {
       throw new Exception(
           "Incorrect EPUB navigation target: at least one navLabel element is required.");
     }
