@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [2.0.4] - 2019-05-15
+### Fixed
+- Merged pull request #45
+    - Fixes pana hits to make code more readable
+
 ## [2.0.3] - 2019-05-15
 ### Changed
 - Raised `sdk` version constraint to 2.0.0
