@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Lowered sdk version constraint to 2.0.0-dev.61.0
 
 ## [2.0.1] - 2018-08-07
-### Chaned
+### Changed
 - Formatted documents
 
 ## [2.0.0] - 2018-08-07
