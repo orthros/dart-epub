@@ -235,7 +235,7 @@ class PackageReader {
     EpubMetadataDate result = new EpubMetadataDate();
     String eventAttribute = metadataDateNode.getAttribute("event",
         namespace: metadataDateNode.name.namespaceUri);
-    if (eventAttribute != null && !eventAttribute.isEmpty)
+    if (eventAttribute != null && eventAttribute.isNotEmpty)
       result.Event = eventAttribute;
     result.Date = metadataDateNode.text;
     return result;
