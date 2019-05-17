@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [2.0.5] - 2019-05-16
+### Changed
+- Exposed `EpubChapterRef` to consumers.
+
 ## [2.0.4] - 2019-05-15
 ### Fixed
 - Merged pull request #45
