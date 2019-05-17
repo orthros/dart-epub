@@ -44,10 +44,12 @@ class PackageReader {
               break;
           }
         });
-        if (guideReference.Type == null || guideReference.Type.isEmpty)
+        if (guideReference.Type == null || guideReference.Type.isEmpty) {
           throw new Exception("Incorrect EPUB guide: item type is missing");
-        if (guideReference.Href == null || guideReference.Href.isEmpty)
+        }
+        if (guideReference.Href == null || guideReference.Href.isEmpty) {
           throw new Exception("Incorrect EPUB guide: item href is missing");
+        }
         result.Items.add(guideReference);
       }
     });
@@ -91,13 +93,16 @@ class PackageReader {
           }
         });
 
-        if (manifestItem.Id == null || manifestItem.Id.isEmpty)
+        if (manifestItem.Id == null || manifestItem.Id.isEmpty) {
           throw new Exception("Incorrect EPUB manifest: item ID is missing");
-        if (manifestItem.Href == null || manifestItem.Href.isEmpty)
+        }
+        if (manifestItem.Href == null || manifestItem.Href.isEmpty) {
           throw new Exception("Incorrect EPUB manifest: item href is missing");
-        if (manifestItem.MediaType == null || manifestItem.MediaType.isEmpty)
+        }
+        if (manifestItem.MediaType == null || manifestItem.MediaType.isEmpty) {
           throw new Exception(
               "Incorrect EPUB manifest: item media type is missing");
+        }
         result.Items.add(manifestItem);
       }
     });
