@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:epub/epub.dart' as epub;
+import 'package:image/image.dart' as image;
 
 void main() => runApp(EpubWidget());
 
@@ -33,8 +34,8 @@ class EpubState extends State<EpubWidget> {
                 color: Colors.white,
                 child: new Container(
                   child: new Center(
-                      child: new Column(children: [
-                    new Padding(padding: EdgeInsets.only(top: 140.0)),
+                      child: new ListView(children: [
+                    new Padding(padding: EdgeInsets.only(top: 70.0)),
                     new Text(
                       'Epub Inspector',
                       style: new TextStyle(fontSize: 25.0),
@@ -104,6 +105,8 @@ class EpubState extends State<EpubWidget> {
 }
 
 Widget buildEpubWidget(epub.EpubBookRef book) {
+  var chapters = book.getChapters();
+  var cover = book.readCover();
   return Container(
       child: new Column(
     children: <Widget>[
@@ -125,12 +128,55 @@ Widget buildEpubWidget(epub.EpubBookRef book) {
       Text(
         book.Author,
         style: TextStyle(fontSize: 15.0),
-      )
+      ),
+      new Padding(
+        padding: EdgeInsets.only(top: 15.0),
+      ),
+      FutureBuilder<List<epub.EpubChapterRef>>(
+          future: chapters,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: <Widget>[
+                  Text("Chapters", style: TextStyle(fontSize: 20.0)),
+                  Text(
+                    snapshot.data.length.toString(),
+                    style: TextStyle(fontSize: 15.0),
+                  )
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            return Container();
+          }),
+      new Padding(
+        padding: EdgeInsets.only(top: 15.0),
+      ),
+      FutureBuilder<epub.Image>(
+        future: cover,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: <Widget>[
+                Text("Cover", style: TextStyle(fontSize: 20.0)),
+                Image.memory(image.encodePng(snapshot.data)),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          return Container();
+        },
+      ),
     ],
   ));
 }
 
-// Needs a url to a valid url to an epub like 'https://www.gutenberg.org/ebooks/11.epub.images'
+// Needs a url to a valid url to an epub such as
+// https://www.gutenberg.org/ebooks/11.epub.images
+// or
+// https://www.gutenberg.org/ebooks/19002.epub.images
 Future<epub.EpubBookRef> fetchBook(String url) async {
   // Hard coded to Alice Adventures In Wonderland in Project Gutenberb
   final response = await http.get(url);
