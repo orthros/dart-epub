@@ -5,8 +5,8 @@ import 'package:epub/epub.dart';
 
 main(List<String> args) async {
   //Get the epub into memory somehow
-  String fileName = "hittelOnGoldMines.epub";
-  String fullPath = path.join(io.Directory.current.path, 'test', fileName);
+  String fileName = "alicesAdventuresUnderGround.epub";
+  String fullPath = path.join(io.Directory.current.path, fileName);
   var targetFile = new io.File(fullPath);
   List<int> bytes = await targetFile.readAsBytes();
 
