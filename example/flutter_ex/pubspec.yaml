@@ -21,10 +21,6 @@ dependencies:
 
   image: ^2.0.0
 
-dependency_overrides:
-  epub:
-    path: ../../
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

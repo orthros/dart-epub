@@ -32,7 +32,7 @@ class ContentReader {
           EpubTextContentFileRef epubTextContentFile =
               new EpubTextContentFileRef(bookRef);
           {
-            epubTextContentFile.FileName = fileName;
+            epubTextContentFile.FileName = Uri.decodeFull(fileName);
             epubTextContentFile.ContentMimeType = contentMimeType;
             epubTextContentFile.ContentType = contentType;
           }
@@ -64,7 +64,7 @@ class ContentReader {
           EpubByteContentFileRef epubByteContentFile =
               new EpubByteContentFileRef(bookRef);
           {
-            epubByteContentFile.FileName = fileName;
+            epubByteContentFile.FileName = Uri.decodeFull(fileName);
             epubByteContentFile.ContentMimeType = contentMimeType;
             epubByteContentFile.ContentType = contentType;
           }

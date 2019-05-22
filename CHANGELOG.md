@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [2.0.6] - 2019-05-22
+### Fixed
+- Fixed Issue #35: File cannot be opened if its path is url-encoded in the manifest
+- Updated `examples/dart_ex` to have a README as well as use a locally stored file.
+
 ## [2.0.5] - 2019-05-16
 ### Changed
 - Exposed `EpubChapterRef` to consumers.

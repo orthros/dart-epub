@@ -1,6 +1,6 @@
 name: epub
-version: 2.0.5
-author: Colin Nelson <colinnlsn@gmail.com>
+version: 2.0.6
+author: Colin Nelson <colin@orthros.dev>
 description: Epub Parser for Dart. Suitable for use on the Server, the Web, or in Flutter
 homepage: https://github.com/orthros/dart-epub
 environment:
