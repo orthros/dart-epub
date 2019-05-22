@@ -16,13 +16,14 @@ class EpubMetadataWriter {
               builder.element("title", nest: item, namespace: _dc_namespace))
           ..Creators.forEach((item) =>
               builder.element("creator", namespace: _dc_namespace, nest: () {
-                if (item.Role != null)
+                if (item.Role != null) {
                   builder.attribute("role", item.Role,
                       namespace: _opf_namespace);
-                if (item.FileAs != null)
+                }
+                if (item.FileAs != null) {
                   builder.attribute("file-as", item.FileAs,
                       namespace: _opf_namespace);
-
+                }
                 builder.text(item.Creator);
               }))
           ..Subjects.forEach((item) =>
@@ -31,21 +32,22 @@ class EpubMetadataWriter {
               namespace: _dc_namespace, nest: item))
           ..Contributors.forEach((item) => builder
                   .element("contributor", namespace: _dc_namespace, nest: () {
-                if (item.Role != null)
+                if (item.Role != null) {
                   builder.attribute("role", item.Role,
                       namespace: _opf_namespace);
-                if (item.FileAs != null)
+                }
+                if (item.FileAs != null) {
                   builder.attribute("file-as", item.FileAs,
                       namespace: _opf_namespace);
-
+                }
                 builder.text(item.Contributor);
               }))
           ..Dates.forEach((date) =>
               builder.element("date", namespace: _dc_namespace, nest: () {
-                if (date.Event != null)
+                if (date.Event != null) {
                   builder.attribute("event", date.Event,
                       namespace: _opf_namespace);
-
+                }
                 builder.text(date.Date);
               }))
           ..Types.forEach((type) =>
@@ -54,9 +56,10 @@ class EpubMetadataWriter {
               .forEach((format) => builder.element("format", namespace: _dc_namespace, nest: format))
           ..Identifiers.forEach((id) => builder.element("identifier", namespace: _dc_namespace, nest: () {
                 if (id.Id != null) builder.attribute("id", id.Id);
-                if (id.Scheme != null)
+                if (id.Scheme != null) {
                   builder.attribute("scheme", id.Scheme,
                       namespace: _opf_namespace);
+                }
                 builder.text(id.Identifier);
               }))
           ..Sources.forEach((item) => builder.element("source", namespace: _dc_namespace, nest: item))
@@ -66,24 +69,30 @@ class EpubMetadataWriter {
           ..Rights.forEach((item) => builder.element("rights", namespace: _dc_namespace, nest: item))
           ..MetaItems.forEach((metaitem) => builder.element("meta", nest: () {
                 if (version == EpubVersion.Epub2) {
-                  if (metaitem.Name != null)
+                  if (metaitem.Name != null) {
                     builder.attribute("name", metaitem.Name);
-                  if (metaitem.Content != null)
+                  }
+                  if (metaitem.Content != null) {
                     builder.attribute("content", metaitem.Content);
+                  }
                 } else if (version == EpubVersion.Epub3) {
                   if (metaitem.Id != null) builder.attribute("id", metaitem.Id);
-                  if (metaitem.Refines != null)
+                  if (metaitem.Refines != null) {
                     builder.attribute("refines", metaitem.Refines);
-                  if (metaitem.Property != null)
+                  }
+                  if (metaitem.Property != null) {
                     builder.attribute("property", metaitem.Property);
-                  if (metaitem.Scheme != null)
+                  }
+                  if (metaitem.Scheme != null) {
                     builder.attribute("scheme", metaitem.Scheme);
+                  }
                 }
               }));
 
-        if (meta.Description != null)
+        if (meta.Description != null) {
           builder.element("description",
               namespace: _dc_namespace, nest: meta.Description);
+        }
       });
   }
 }

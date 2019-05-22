@@ -240,8 +240,9 @@ class PackageReader {
     EpubMetadataDate result = new EpubMetadataDate();
     String eventAttribute = metadataDateNode.getAttribute("event",
         namespace: metadataDateNode.name.namespaceUri);
-    if (eventAttribute != null && eventAttribute.isNotEmpty)
+    if (eventAttribute != null && eventAttribute.isNotEmpty) {
       result.Event = eventAttribute;
+    }
     result.Date = metadataDateNode.text;
     return result;
   }
@@ -313,9 +314,10 @@ class PackageReader {
     ArchiveFile rootFileEntry = epubArchive.files.firstWhere(
         (ArchiveFile testfile) => testfile.name == rootFilePath,
         orElse: () => null);
-    if (rootFileEntry == null)
+    if (rootFileEntry == null) {
       throw new Exception(
           "EPUB parsing error: root file not found in archive.");
+    }
     xml.XmlDocument containerDocument =
         xml.parse(convert.utf8.decode(rootFileEntry.content));
     String opfNamespace = "http://www.idpf.org/2007/opf";
@@ -324,35 +326,39 @@ class PackageReader {
         .firstWhere((xml.XmlElement elem) => elem != null);
     EpubPackage result = new EpubPackage();
     String epubVersionValue = packageNode.getAttribute("version");
-    if (epubVersionValue == "2.0")
+    if (epubVersionValue == "2.0") {
       result.Version = EpubVersion.Epub2;
-    else if (epubVersionValue == "3.0")
+    } else if (epubVersionValue == "3.0") {
       result.Version = EpubVersion.Epub3;
-    else
+    } else {
       throw new Exception("Unsupported EPUB version: ${epubVersionValue}.");
+    }
     xml.XmlElement metadataNode = packageNode
         .findElements("metadata", namespace: opfNamespace)
         .firstWhere((xml.XmlElement elem) => elem != null);
-    if (metadataNode == null)
+    if (metadataNode == null) {
       throw new Exception(
           "EPUB parsing error: metadata not found in the package.");
+    }
     EpubMetadata metadata = readMetadata(metadataNode, result.Version);
     result.Metadata = metadata;
     xml.XmlElement manifestNode = packageNode
         .findElements("manifest", namespace: opfNamespace)
         .firstWhere((xml.XmlElement elem) => elem != null);
-    if (manifestNode == null)
+    if (manifestNode == null) {
       throw new Exception(
           "EPUB parsing error: manifest not found in the package.");
+    }
     EpubManifest manifest = readManifest(manifestNode);
     result.Manifest = manifest;
 
     xml.XmlElement spineNode = packageNode
         .findElements("spine", namespace: opfNamespace)
         .firstWhere((xml.XmlElement elem) => elem != null);
-    if (spineNode == null)
+    if (spineNode == null) {
       throw new Exception(
           "EPUB parsing error: spine not found in the package.");
+    }
     EpubSpine spine = readSpine(spineNode);
     result.Spine = spine;
     xml.XmlElement guideNode = packageNode
@@ -369,8 +375,9 @@ class PackageReader {
     EpubSpine result = new EpubSpine();
     result.Items = new List<EpubSpineItemRef>();
     String tocAttribute = spineNode.getAttribute("toc");
-    if (tocAttribute == null || tocAttribute.isEmpty)
+    if (tocAttribute == null || tocAttribute.isEmpty) {
       throw new Exception("Incorrect EPUB spine: TOC is missing");
+    }
     result.TableOfContents = tocAttribute;
     spineNode.children
         .where((xml.XmlNode node) => node is xml.XmlElement)
@@ -379,8 +386,9 @@ class PackageReader {
       if (spineItemNode.name.local.toLowerCase() == "itemref") {
         EpubSpineItemRef spineItemRef = new EpubSpineItemRef();
         String idRefAttribute = spineItemNode.getAttribute("idref");
-        if (idRefAttribute == null || idRefAttribute.isEmpty)
+        if (idRefAttribute == null || idRefAttribute.isEmpty) {
           throw new Exception("Incorrect EPUB spine: item ID ref is missing");
+        }
         spineItemRef.IdRef = idRefAttribute;
         String linearAttribute = spineItemNode.getAttribute("linear");
         spineItemRef.IsLinear =

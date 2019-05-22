@@ -22,10 +22,12 @@ class EpubNavigationList {
       return false;
     }
 
-    if (!collections.listsEqual(NavigationLabels, otherAs.NavigationLabels))
+    if (!collections.listsEqual(NavigationLabels, otherAs.NavigationLabels)) {
       return false;
-    if (!collections.listsEqual(NavigationTargets, otherAs.NavigationTargets))
+    }
+    if (!collections.listsEqual(NavigationTargets, otherAs.NavigationTargets)) {
       return false;
+    }
     return true;
   }
 }
