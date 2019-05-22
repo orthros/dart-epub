@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [2.0.7] - 2019-05-22
+### Added
+- Added example of using `epub` in a web page: `examples/web_ex`
+### Fixed
+- Fixed errors from pedantic analysis
+### Changed
+- Added pedantic analysis options
+
 ## [2.0.6] - 2019-05-22
 ### Fixed
 - Fixed Issue #35: File cannot be opened if its path is url-encoded in the manifest

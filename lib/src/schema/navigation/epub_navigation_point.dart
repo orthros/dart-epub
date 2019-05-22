@@ -30,8 +30,9 @@ class EpubNavigationPoint {
       return false;
     }
 
-    if (!collections.listsEqual(NavigationLabels, otherAs.NavigationLabels))
+    if (!collections.listsEqual(NavigationLabels, otherAs.NavigationLabels)) {
       return false;
+    }
 
     if (!collections.listsEqual(
         ChildNavigationPoints, otherAs.ChildNavigationPoints)) return false;
