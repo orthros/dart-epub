@@ -1,7 +1,7 @@
 class EnumFromString<T> {
   List<T> enumValues;
 
-  EnumFromString(List<T> this.enumValues);
+  EnumFromString(this.enumValues);
 
   T get(String value) {
     value = "$T.$value";
