@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [2.1.0] - 2019-08-06
+### Fixed
+- Version 3 EPUBs can have a null Table of Contents
+- Updated `pedantic` analysis options
+
 ## [2.0.7] - 2019-05-22
 ### Added
 - Added example of using `epub` in a web page: `examples/web_ex`
