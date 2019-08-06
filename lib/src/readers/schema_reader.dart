@@ -12,7 +12,7 @@ import 'root_file_path_reader.dart';
 
 class SchemaReader {
   static Future<EpubSchema> readSchema(Archive epubArchive) async {
-    EpubSchema result = new EpubSchema();
+    EpubSchema result = EpubSchema();
 
     String rootFilePath = await RootFilePathReader.getRootFilePath(epubArchive);
     String contentDirectoryPath = ZipPathUtils.getDirectoryPath(rootFilePath);

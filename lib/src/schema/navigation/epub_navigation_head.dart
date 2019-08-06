@@ -7,7 +7,7 @@ class EpubNavigationHead {
   List<EpubNavigationHeadMeta> Metadata;
 
   EpubNavigationHead() {
-    Metadata = new List<EpubNavigationHeadMeta>();
+    Metadata = List<EpubNavigationHeadMeta>();
   }
 
   @override

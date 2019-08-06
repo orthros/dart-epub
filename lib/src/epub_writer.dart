@@ -10,15 +10,15 @@ class EpubWriter {
 
   // Creates a Zip Archive of an EpubBook
   static Archive _createArchive(EpubBook book) {
-    var arch = new Archive();
+    var arch = Archive();
 
     // Add simple metadata
-    arch.addFile(new ArchiveFile.noCompress(
+    arch.addFile(ArchiveFile.noCompress(
         "metadata", 20, convert.utf8.encode("application/epub+zip")));
 
     // Add Container file
-    arch.addFile(new ArchiveFile("META-INF/container.xml",
-        _container_file.length, convert.utf8.encode(_container_file)));
+    arch.addFile(ArchiveFile("META-INF/container.xml", _container_file.length,
+        convert.utf8.encode(_container_file)));
 
     // Add all content to the archive
     book.Content.AllFiles.forEach((name, file) {
@@ -30,7 +30,7 @@ class EpubWriter {
         content = convert.utf8.encode(file.Content);
       }
 
-      arch.addFile(new ArchiveFile(
+      arch.addFile(ArchiveFile(
           ZipPathUtils.combine(book.Schema.ContentDirectoryPath, name),
           content.length,
           content));
@@ -39,7 +39,7 @@ class EpubWriter {
     // Generate the content.opf file and add it to the Archive
     var contentopf = EpubPackageWriter.writeContent(book.Schema.Package);
 
-    arch.addFile(new ArchiveFile(
+    arch.addFile(ArchiveFile(
         ZipPathUtils.combine(book.Schema.ContentDirectoryPath, "content.opf"),
         contentopf.length,
         convert.utf8.encode(contentopf)));
@@ -51,6 +51,6 @@ class EpubWriter {
   static List<int> writeBook(EpubBook book) {
     var arch = _createArchive(book);
 
-    return new ZipEncoder().encode(arch);
+    return ZipEncoder().encode(arch);
   }
 }

@@ -21,9 +21,9 @@ import 'schema/opf/epub_metadata_creator.dart';
 class EpubReader {
   /// Opens the book asynchronously without reading its content. Holds the handle to the EPUB file.
   static Future<EpubBookRef> openBook(List<int> bytes) async {
-    Archive epubArchive = new ZipDecoder().decodeBytes(bytes);
+    Archive epubArchive = ZipDecoder().decodeBytes(bytes);
 
-    EpubBookRef bookRef = new EpubBookRef(epubArchive);
+    EpubBookRef bookRef = EpubBookRef(epubArchive);
     bookRef.Schema = await SchemaReader.readSchema(epubArchive);
     bookRef.Title = bookRef.Schema.Package.Metadata.Titles
         .firstWhere((String name) => true, orElse: () => "");
@@ -37,7 +37,7 @@ class EpubReader {
 
   /// Opens the book asynchronously and reads all of its content into the memory. Does not hold the handle to the EPUB file.
   static Future<EpubBook> readBook(List<int> bytes) async {
-    EpubBook result = new EpubBook();
+    EpubBook result = EpubBook();
 
     EpubBookRef epubBookRef = await openBook(bytes);
     result.Schema = epubBookRef.Schema;
@@ -53,12 +53,12 @@ class EpubReader {
   }
 
   static Future<EpubContent> readContent(EpubContentRef contentRef) async {
-    EpubContent result = new EpubContent();
+    EpubContent result = EpubContent();
     result.Html = await readTextContentFiles(contentRef.Html);
     result.Css = await readTextContentFiles(contentRef.Css);
     result.Images = await readByteContentFiles(contentRef.Images);
     result.Fonts = await readByteContentFiles(contentRef.Fonts);
-    result.AllFiles = new Map<String, EpubContentFile>();
+    result.AllFiles = Map<String, EpubContentFile>();
 
     result.Html.forEach((String key, EpubTextContentFile value) {
       result.AllFiles[key] = value;
@@ -87,11 +87,11 @@ class EpubReader {
   static Future<Map<String, EpubTextContentFile>> readTextContentFiles(
       Map<String, EpubTextContentFileRef> textContentFileRefs) async {
     Map<String, EpubTextContentFile> result =
-        new Map<String, EpubTextContentFile>();
+        Map<String, EpubTextContentFile>();
 
     await Future.forEach(textContentFileRefs.keys, (key) async {
       EpubContentFileRef value = textContentFileRefs[key];
-      EpubTextContentFile textContentFile = new EpubTextContentFile();
+      EpubTextContentFile textContentFile = EpubTextContentFile();
       textContentFile.FileName = value.FileName;
       textContentFile.ContentType = value.ContentType;
       textContentFile.ContentMimeType = value.ContentMimeType;
@@ -104,7 +104,7 @@ class EpubReader {
   static Future<Map<String, EpubByteContentFile>> readByteContentFiles(
       Map<String, EpubByteContentFileRef> byteContentFileRefs) async {
     Map<String, EpubByteContentFile> result =
-        new Map<String, EpubByteContentFile>();
+        Map<String, EpubByteContentFile>();
     await Future.forEach(byteContentFileRefs.keys, (key) async {
       result[key] = await readByteContentFile(byteContentFileRefs[key]);
     });
@@ -113,7 +113,7 @@ class EpubReader {
 
   static Future<EpubByteContentFile> readByteContentFile(
       EpubContentFileRef contentFileRef) async {
-    EpubByteContentFile result = new EpubByteContentFile();
+    EpubByteContentFile result = EpubByteContentFile();
 
     result.FileName = contentFileRef.FileName;
     result.ContentType = contentFileRef.ContentType;
@@ -125,9 +125,9 @@ class EpubReader {
 
   static Future<List<EpubChapter>> readChapters(
       List<EpubChapterRef> chapterRefs) async {
-    List<EpubChapter> result = new List<EpubChapter>();
+    List<EpubChapter> result = List<EpubChapter>();
     await Future.forEach(chapterRefs, (EpubChapterRef chapterRef) async {
-      EpubChapter chapter = new EpubChapter();
+      EpubChapter chapter = EpubChapter();
 
       chapter.Title = chapterRef.Title;
       chapter.ContentFileName = chapterRef.ContentFileName;

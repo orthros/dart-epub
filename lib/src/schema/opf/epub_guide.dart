@@ -7,7 +7,7 @@ class EpubGuide {
   List<EpubGuideReference> Items;
 
   EpubGuide() {
-    Items = new List<EpubGuideReference>();
+    Items = List<EpubGuideReference>();
   }
 
   @override
