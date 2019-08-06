@@ -375,9 +375,6 @@ class PackageReader {
     EpubSpine result = new EpubSpine();
     result.Items = new List<EpubSpineItemRef>();
     String tocAttribute = spineNode.getAttribute("toc");
-    if (tocAttribute == null || tocAttribute.isEmpty) {
-      throw new Exception("Incorrect EPUB spine: TOC is missing");
-    }
     result.TableOfContents = tocAttribute;
     spineNode.children
         .where((xml.XmlNode node) => node is xml.XmlElement)
