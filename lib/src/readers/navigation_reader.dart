@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:archive/archive.dart';
 import 'package:dart2_constant/convert.dart' as convert;
+import 'package:epub/src/schema/opf/epub_version.dart';
 import 'package:xml/xml.dart' as xml;
 
 import '../schema/navigation/epub_metadata.dart';
@@ -29,7 +30,10 @@ class NavigationReader {
     EpubNavigation result = new EpubNavigation();
     String tocId = package.Spine.TableOfContents;
     if (tocId == null || tocId.isEmpty) {
-      throw new Exception("EPUB parsing error: TOC ID is empty.");
+      if (package.Version == EpubVersion.Epub2) {
+        throw new Exception("EPUB parsing error: TOC ID is empty.");
+      }
+      return null;
     }
 
     EpubManifestItem tocManifestItem = package.Manifest.Items.firstWhere(

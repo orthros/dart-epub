@@ -5,6 +5,9 @@ import '../schema/navigation/epub_navigation_point.dart';
 
 class ChapterReader {
   static List<EpubChapterRef> getChapters(EpubBookRef bookRef) {
+    if (bookRef.Schema.Navigation == null) {
+      return new List<EpubChapterRef>();
+    }
     return getChaptersImpl(bookRef, bookRef.Schema.Navigation.NavMap.Points);
   }
 
