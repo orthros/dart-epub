@@ -155,8 +155,7 @@ class NavigationReader {
     EpubNavigationDocAuthor result = EpubNavigationDocAuthor();
     result.Authors = List<String>();
     docAuthorNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement textNode) {
       if (textNode.name.local.toLowerCase() == "text") {
         result.Authors.add(textNode.text);
@@ -170,8 +169,7 @@ class NavigationReader {
     EpubNavigationDocTitle result = EpubNavigationDocTitle();
     result.Titles = List<String>();
     docTitleNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement textNode) {
       if (textNode.name.local.toLowerCase() == "text") {
         result.Titles.add(textNode.text);
@@ -185,8 +183,7 @@ class NavigationReader {
     result.Metadata = List<EpubNavigationHeadMeta>();
 
     headNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement metaNode) {
       if (metaNode.name.local.toLowerCase() == "meta") {
         EpubNavigationHeadMeta meta = EpubNavigationHeadMeta();
@@ -253,8 +250,7 @@ class NavigationReader {
       }
     });
     navigationListNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement navigationListChildNode) {
       switch (navigationListChildNode.name.local.toLowerCase()) {
         case "navlabel":
@@ -280,8 +276,7 @@ class NavigationReader {
     EpubNavigationMap result = EpubNavigationMap();
     result.Points = List<EpubNavigationPoint>();
     navigationMapNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement navigationPointNode) {
       if (navigationPointNode.name.local.toLowerCase() == "navpoint") {
         EpubNavigationPoint navigationPoint =
@@ -297,8 +292,7 @@ class NavigationReader {
     EpubNavigationPageList result = EpubNavigationPageList();
     result.Targets = List<EpubNavigationPageTarget>();
     navigationPageListNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement pageTargetNode) {
       if (pageTargetNode.name.local == "pageTarget") {
         EpubNavigationPageTarget pageTarget =
@@ -344,8 +338,7 @@ class NavigationReader {
     }
 
     navigationPageTargetNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement navigationPageTargetChildNode) {
       switch (navigationPageTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":
@@ -393,8 +386,7 @@ class NavigationReader {
     result.NavigationLabels = List<EpubNavigationLabel>();
     result.ChildNavigationPoints = List<EpubNavigationPoint>();
     navigationPointNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement navigationPointChildNode) {
       switch (navigationPointChildNode.name.local.toLowerCase()) {
         case "navlabel":
@@ -454,8 +446,7 @@ class NavigationReader {
     }
 
     navigationTargetNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement navigationTargetChildNode) {
       switch (navigationTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":

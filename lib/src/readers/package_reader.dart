@@ -24,8 +24,7 @@ class PackageReader {
     EpubGuide result = EpubGuide();
     result.Items = List<EpubGuideReference>();
     guideNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement guideReferenceNode) {
       if (guideReferenceNode.name.local.toLowerCase() == "reference") {
         EpubGuideReference guideReference = EpubGuideReference();
@@ -60,8 +59,7 @@ class PackageReader {
     EpubManifest result = EpubManifest();
     result.Items = List<EpubManifestItem>();
     manifestNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement manifestItemNode) {
       if (manifestItemNode.name.local.toLowerCase() == "item") {
         EpubManifestItem manifestItem = EpubManifestItem();
@@ -128,8 +126,7 @@ class PackageReader {
     result.Rights = List<String>();
     result.MetaItems = List<EpubMetadataMeta>();
     metadataNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement metadataItemNode) {
       String innerText = metadataItemNode.text;
       switch (metadataItemNode.name.local.toLowerCase()) {
@@ -373,8 +370,7 @@ class PackageReader {
     String tocAttribute = spineNode.getAttribute("toc");
     result.TableOfContents = tocAttribute;
     spineNode.children
-        .where((xml.XmlNode node) => node is xml.XmlElement)
-        .map((xml.XmlNode node) => node as xml.XmlElement)
+        .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement spineItemNode) {
       if (spineItemNode.name.local.toLowerCase() == "itemref") {
         EpubSpineItemRef spineItemRef = EpubSpineItemRef();
