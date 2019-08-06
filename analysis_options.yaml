@@ -10,6 +10,6 @@ include: package:pedantic/analysis_options.yaml
 #     - camel_case_types
 
 analyzer:
-   exclude:
-     - example/**
-     - test/**
+  exclude:
+    - example/**
+    - test/**
