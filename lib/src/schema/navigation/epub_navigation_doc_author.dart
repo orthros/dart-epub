@@ -5,7 +5,7 @@ class EpubNavigationDocAuthor {
   List<String> Authors;
 
   EpubNavigationDocAuthor() {
-    Authors = new List<String>();
+    Authors = List<String>();
   }
 
   @override

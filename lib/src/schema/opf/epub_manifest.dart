@@ -7,7 +7,7 @@ class EpubManifest {
   List<EpubManifestItem> Items;
 
   EpubManifest() {
-    Items = new List<EpubManifestItem>();
+    Items = List<EpubManifestItem>();
   }
 
   @override

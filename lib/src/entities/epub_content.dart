@@ -13,11 +13,11 @@ class EpubContent {
   Map<String, EpubContentFile> AllFiles;
 
   EpubContent() {
-    Html = new Map<String, EpubTextContentFile>();
-    Css = new Map<String, EpubTextContentFile>();
-    Images = new Map<String, EpubByteContentFile>();
-    Fonts = new Map<String, EpubByteContentFile>();
-    AllFiles = new Map<String, EpubContentFile>();
+    Html = Map<String, EpubTextContentFile>();
+    Css = Map<String, EpubTextContentFile>();
+    Images = Map<String, EpubByteContentFile>();
+    Fonts = Map<String, EpubByteContentFile>();
+    AllFiles = Map<String, EpubContentFile>();
   }
 
   @override

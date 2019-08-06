@@ -8,12 +8,12 @@ import '../schema/opf/epub_manifest_item.dart';
 
 class ContentReader {
   static EpubContentRef parseContentMap(EpubBookRef bookRef) {
-    EpubContentRef result = new EpubContentRef();
-    result.Html = new Map<String, EpubTextContentFileRef>();
-    result.Css = new Map<String, EpubTextContentFileRef>();
-    result.Images = new Map<String, EpubByteContentFileRef>();
-    result.Fonts = new Map<String, EpubByteContentFileRef>();
-    result.AllFiles = new Map<String, EpubContentFileRef>();
+    EpubContentRef result = EpubContentRef();
+    result.Html = Map<String, EpubTextContentFileRef>();
+    result.Css = Map<String, EpubTextContentFileRef>();
+    result.Images = Map<String, EpubByteContentFileRef>();
+    result.Fonts = Map<String, EpubByteContentFileRef>();
+    result.AllFiles = Map<String, EpubContentFileRef>();
 
     bookRef.Schema.Package.Manifest.Items
         .forEach((EpubManifestItem manifestItem) {
@@ -30,7 +30,7 @@ class ContentReader {
         case EpubContentType.DTBOOK:
         case EpubContentType.DTBOOK_NCX:
           EpubTextContentFileRef epubTextContentFile =
-              new EpubTextContentFileRef(bookRef);
+              EpubTextContentFileRef(bookRef);
           {
             epubTextContentFile.FileName = Uri.decodeFull(fileName);
             epubTextContentFile.ContentMimeType = contentMimeType;
@@ -62,7 +62,7 @@ class ContentReader {
           break;
         default:
           EpubByteContentFileRef epubByteContentFile =
-              new EpubByteContentFileRef(bookRef);
+              EpubByteContentFileRef(bookRef);
           {
             epubByteContentFile.FileName = Uri.decodeFull(fileName);
             epubByteContentFile.ContentMimeType = contentMimeType;

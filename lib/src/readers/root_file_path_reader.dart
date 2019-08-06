@@ -12,7 +12,7 @@ class RootFilePathReader {
         (ArchiveFile file) => file.name == EPUB_CONTAINER_FILE_PATH,
         orElse: () => null);
     if (containerFileEntry == null) {
-      throw new Exception(
+      throw Exception(
           "EPUB parsing error: ${EPUB_CONTAINER_FILE_PATH} file not found in archive.");
     }
 
@@ -23,7 +23,7 @@ class RootFilePathReader {
             namespace: "urn:oasis:names:tc:opendocument:xmlns:container")
         .firstWhere((xml.XmlElement elem) => elem != null, orElse: () => null);
     if (packageElement == null) {
-      throw new Exception("EPUB parsing error: Invalid epub container");
+      throw Exception("EPUB parsing error: Invalid epub container");
     }
 
     xml.XmlElement rootFileElement = packageElement.descendants.firstWhere(
