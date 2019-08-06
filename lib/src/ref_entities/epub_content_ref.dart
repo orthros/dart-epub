@@ -13,11 +13,11 @@ class EpubContentRef {
   Map<String, EpubContentFileRef> AllFiles;
 
   EpubContentRef() {
-    Html = new Map<String, EpubTextContentFileRef>();
-    Css = new Map<String, EpubTextContentFileRef>();
-    Images = new Map<String, EpubByteContentFileRef>();
-    Fonts = new Map<String, EpubByteContentFileRef>();
-    AllFiles = new Map<String, EpubContentFileRef>();
+    Html = Map<String, EpubTextContentFileRef>();
+    Css = Map<String, EpubTextContentFileRef>();
+    Images = Map<String, EpubByteContentFileRef>();
+    Fonts = Map<String, EpubByteContentFileRef>();
+    AllFiles = Map<String, EpubContentFileRef>();
   }
 
   @override

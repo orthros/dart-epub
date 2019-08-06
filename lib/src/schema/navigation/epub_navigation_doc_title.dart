@@ -5,7 +5,7 @@ class EpubNavigationDocTitle {
   List<String> Titles;
 
   EpubNavigationDocTitle() {
-    Titles = new List<String>();
+    Titles = List<String>();
   }
 
   @override
