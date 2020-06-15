@@ -88,6 +88,9 @@ class PackageReader {
             case "fallback-style":
               manifestItem.FallbackStyle = attributeValue;
               break;
+            case "properties":
+              manifestItem.Properties = attributeValue;
+              break;
           }
         });
 
