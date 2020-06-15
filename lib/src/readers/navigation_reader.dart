@@ -396,7 +396,7 @@ class NavigationReader {
         .forEach((xml.XmlElement navigationPointNode) {
       if (navigationPointNode.name.local.toLowerCase() == "li") {
         EpubNavigationPoint navigationPoint =
-        readNavigationPoint(navigationPointNode);
+        readNavigationPointV3(navigationPointNode);
         result.Points.add(navigationPoint);
       }
     });
