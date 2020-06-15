@@ -159,7 +159,7 @@ class NavigationReader {
 
 
       result.DocTitle  = EpubNavigationDocTitle();
-      result.DocTitle.Titles.add(headNode.findAllElements("title").firstWhere((element) =>  element != null, orElse: () => null).text);
+      result.DocTitle.Titles.add(headNode.findAllElements("title").firstWhere((element) =>  element != null, orElse: () => null).text.replaceAllMapped(RegExp(r'/^\s+|\s+$/g'),  (match) {return '"${match.group(0)}"';}));
 
       result.DocAuthors = List<EpubNavigationDocAuthor>();
 
@@ -173,7 +173,6 @@ class NavigationReader {
             "EPUB parsing error: TOC file does not contain head element.");
       }
       xml.XmlElement navMapNode = navNode.findElements("ol").single;
-
 
       EpubNavigationMap navMap = readNavigationMapV3(navMapNode);
       result.NavMap = navMap;
@@ -355,12 +354,12 @@ class NavigationReader {
       switch (navigationListChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              readNavigationLabel(navigationListChildNode);
+          readNavigationLabel(navigationListChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "navtarget":
           EpubNavigationTarget navigationTarget =
-              readNavigationTarget(navigationListChildNode);
+          readNavigationTarget(navigationListChildNode);
           result.NavigationTargets.add(navigationTarget);
           break;
       }
@@ -380,7 +379,7 @@ class NavigationReader {
         .forEach((xml.XmlElement navigationPointNode) {
       if (navigationPointNode.name.local.toLowerCase() == "navpoint") {
         EpubNavigationPoint navigationPoint =
-            readNavigationPoint(navigationPointNode);
+        readNavigationPoint(navigationPointNode);
         result.Points.add(navigationPoint);
       }
     });
@@ -412,7 +411,7 @@ class NavigationReader {
         .forEach((xml.XmlElement pageTargetNode) {
       if (pageTargetNode.name.local == "pageTarget") {
         EpubNavigationPageTarget pageTarget =
-            readNavigationPageTarget(pageTargetNode);
+        readNavigationPageTarget(pageTargetNode);
         result.Targets.add(pageTarget);
       }
     });
@@ -459,12 +458,12 @@ class NavigationReader {
       switch (navigationPageTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              readNavigationLabel(navigationPageTargetChildNode);
+          readNavigationLabel(navigationPageTargetChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "content":
           EpubNavigationContent content =
-              readNavigationContent(navigationPageTargetChildNode);
+          readNavigationContent(navigationPageTargetChildNode);
           result.Content = content;
           break;
       }
@@ -507,17 +506,17 @@ class NavigationReader {
       switch (navigationPointChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              readNavigationLabel(navigationPointChildNode);
+          readNavigationLabel(navigationPointChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "content":
           EpubNavigationContent content =
-              readNavigationContent(navigationPointChildNode);
+          readNavigationContent(navigationPointChildNode);
           result.Content = content;
           break;
         case "navpoint":
           EpubNavigationPoint childNavigationPoint =
-              readNavigationPoint(navigationPointChildNode);
+          readNavigationPoint(navigationPointChildNode);
           result.ChildNavigationPoints.add(childNavigationPoint);
           break;
       }
@@ -559,9 +558,9 @@ class NavigationReader {
           result.Content = content;
           break;
         case "ol":
-          EpubNavigationPoint childNavigationPoint =
-          readNavigationPointV3(navigationPointChildNode);
-          result.ChildNavigationPoints.add(childNavigationPoint);
+          readNavigationMapV3(navigationPointChildNode).Points.forEach((point) {
+            result.ChildNavigationPoints.add(point);
+          });
           break;
       }
     });
@@ -613,12 +612,12 @@ class NavigationReader {
       switch (navigationTargetChildNode.name.local.toLowerCase()) {
         case "navlabel":
           EpubNavigationLabel navigationLabel =
-              readNavigationLabel(navigationTargetChildNode);
+          readNavigationLabel(navigationTargetChildNode);
           result.NavigationLabels.add(navigationLabel);
           break;
         case "content":
           EpubNavigationContent content =
-              readNavigationContent(navigationTargetChildNode);
+          readNavigationContent(navigationTargetChildNode);
           result.Content = content;
           break;
       }
