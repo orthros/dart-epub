@@ -159,7 +159,7 @@ class NavigationReader {
 
 
       result.DocTitle  = EpubNavigationDocTitle();
-      result.DocTitle.Titles.add(headNode.findAllElements("title").firstWhere((element) =>  element != null, orElse: () => null).text.replaceAllMapped(RegExp(r'/^\s+|\s+$/g'),  (match) {return '"${match.group(0)}"';}));
+      result.DocTitle.Titles.add(headNode.findAllElements("title").firstWhere((element) =>  element != null, orElse: () => null).text.trim());
 
       result.DocAuthors = List<EpubNavigationDocAuthor>();
 
@@ -329,7 +329,7 @@ class NavigationReader {
   static EpubNavigationLabel readNavigationLabelV3(
       xml.XmlElement navigationLabelNode) {
     EpubNavigationLabel result = EpubNavigationLabel();
-    result.Text = navigationLabelNode.text;
+    result.Text = navigationLabelNode.text.trim();
     return result;
   }
 
