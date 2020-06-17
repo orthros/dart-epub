@@ -372,6 +372,8 @@ class PackageReader {
     result.Items = List<EpubSpineItemRef>();
     String tocAttribute = spineNode.getAttribute("toc");
     result.TableOfContents = tocAttribute;
+    String pageProgression = spineNode.getAttribute("page-progression-direction");
+    result.ltr = ((pageProgression == null) || pageProgression.toLowerCase() == "ltr");
     spineNode.children
         .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement spineItemNode) {
