@@ -236,7 +236,7 @@ class NavigationReader {
           result.Id = attributeValue;
           break;
         case "href":
-          if (_tocFileEntryPath.length == 0 || attributeValue.contains(_tocFileEntryPath)){
+          if (_tocFileEntryPath.length < 2 || attributeValue.contains(_tocFileEntryPath)){
             result.Source = attributeValue;
           }else{
             result.Source = _tocFileEntryPath+attributeValue;
