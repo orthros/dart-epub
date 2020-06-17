@@ -25,7 +25,10 @@ import '../utils/enum_from_string.dart';
 import '../utils/zip_path_utils.dart';
 
 // ignore: omit_local_variable_types
+
+
 class NavigationReader {
+  static String _tocFileEntryPath;
   static Future<EpubNavigation> readNavigation(Archive epubArchive,
       String contentDirectoryPath, EpubPackage package) async {
     EpubNavigation result = EpubNavigation();
@@ -44,15 +47,15 @@ class NavigationReader {
             "EPUB parsing error: TOC item ${tocId} not found in EPUB manifest.");
       }
 
-      String tocFileEntryPath =
-      ZipPathUtils.combine(contentDirectoryPath, tocManifestItem.Href);
+      _tocFileEntryPath =
+          ZipPathUtils.combine(contentDirectoryPath, tocManifestItem.Href);
       ArchiveFile tocFileEntry = epubArchive.files.firstWhere(
               (ArchiveFile file) =>
-          file.name.toLowerCase() == tocFileEntryPath.toLowerCase(),
+          file.name.toLowerCase() == _tocFileEntryPath.toLowerCase(),
           orElse: () => null);
       if (tocFileEntry == null) {
         throw Exception(
-            "EPUB parsing error: TOC file ${tocFileEntryPath} not found in archive.");
+            "EPUB parsing error: TOC file ${_tocFileEntryPath} not found in archive.");
       }
 
       xml.XmlDocument containerDocument =
@@ -136,16 +139,19 @@ class NavigationReader {
             "EPUB parsing error: TOC item, not found in EPUB manifest.");
       }
 
-      String tocFileEntryPath =
-      ZipPathUtils.combine(contentDirectoryPath, tocManifestItem.Href);
+      _tocFileEntryPath =
+          ZipPathUtils.combine(contentDirectoryPath, tocManifestItem.Href);
       ArchiveFile tocFileEntry = epubArchive.files.firstWhere(
               (ArchiveFile file) =>
-          file.name.toLowerCase() == tocFileEntryPath.toLowerCase(),
+          file.name.toLowerCase() == _tocFileEntryPath.toLowerCase(),
           orElse: () => null);
       if (tocFileEntry == null) {
         throw Exception(
-            "EPUB parsing error: TOC file ${tocFileEntryPath} not found in archive.");
+            "EPUB parsing error: TOC file ${_tocFileEntryPath} not found in archive.");
       }
+      //Get relative toc file path
+      _tocFileEntryPath = ((_tocFileEntryPath.split("/")..removeLast())..removeAt(0)).join("/")+'/';
+
       xml.XmlDocument containerDocument = xml.parse(convert.utf8.decode(tocFileEntry.content));
 
       xml.XmlElement headNode = containerDocument
@@ -230,7 +236,12 @@ class NavigationReader {
           result.Id = attributeValue;
           break;
         case "href":
-          result.Source = attributeValue;
+          if (_tocFileEntryPath.length == 0 || attributeValue.contains(_tocFileEntryPath)){
+            result.Source = attributeValue;
+          }else{
+            result.Source = _tocFileEntryPath+attributeValue;
+          }
+
           break;
       }
     });
