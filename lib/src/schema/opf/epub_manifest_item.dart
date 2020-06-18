@@ -4,6 +4,7 @@ class EpubManifestItem {
   String Id;
   String Href;
   String MediaType;
+  String MediaOverlay;
   String RequiredNamespace;
   String RequiredModules;
   String Fallback;
@@ -15,6 +16,7 @@ class EpubManifestItem {
         Id.hashCode,
         Href.hashCode,
         MediaType.hashCode,
+        MediaOverlay.hashCode,
         RequiredNamespace.hashCode,
         RequiredModules.hashCode,
         Fallback.hashCode,
@@ -31,6 +33,7 @@ class EpubManifestItem {
     return Id == otherAs.Id &&
         Href == otherAs.Href &&
         MediaType == otherAs.MediaType &&
+        MediaOverlay == otherAs.MediaOverlay &&
         RequiredNamespace == otherAs.RequiredNamespace &&
         RequiredModules == otherAs.RequiredModules &&
         Fallback == otherAs.Fallback &&
@@ -39,6 +42,6 @@ class EpubManifestItem {
   }
 
   String toString() {
-    return "Id: ${Id}, Href = ${Href}, MediaType = ${MediaType}, Properties = ${Properties}";
+    return "Id: ${Id}, Href = ${Href}, MediaType = ${MediaType}, Properties = ${Properties}, MediaOverlay = ${MediaOverlay}";
   }
 }
