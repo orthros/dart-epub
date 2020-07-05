@@ -7,6 +7,7 @@ class EpubMetadataMeta {
   String Refines;
   String Property;
   String Scheme;
+  Map<String,String> Attributes;
 
   @override
   int get hashCode => hashObjects([

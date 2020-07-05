@@ -290,9 +290,11 @@ class PackageReader {
   static EpubMetadataMeta readMetadataMetaVersion3(
       xml.XmlElement metadataMetaNode) {
     EpubMetadataMeta result = EpubMetadataMeta();
+    result.Attributes = {};
     metadataMetaNode.attributes
         .forEach((xml.XmlAttribute metadataMetaNodeAttribute) {
       String attributeValue = metadataMetaNodeAttribute.value;
+      result.Attributes[metadataMetaNodeAttribute.name.local.toLowerCase()] = attributeValue;
       switch (metadataMetaNodeAttribute.name.local.toLowerCase()) {
         case "id":
           result.Id = attributeValue;
