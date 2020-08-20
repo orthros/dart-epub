@@ -23,9 +23,9 @@ main() async {
 
     testFileRef = new EpubByteContentFileRef(ref2);
     testFileRef
-      ..ContentMimeType = reference.ContentMimeType
-      ..ContentType = reference.ContentType
-      ..FileName = reference.FileName;
+      ..ContentMimeType = "application/test"
+      ..ContentType = EpubContentType.OTHER
+      ..FileName = "orthrosFile";
   });
 
   tearDown(() async {

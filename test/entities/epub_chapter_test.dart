@@ -16,11 +16,11 @@ main() async {
   setUp(() async {
     testChapter = new EpubChapter();
     testChapter
-      ..Anchor = reference.Anchor
-      ..ContentFileName = reference.ContentFileName
-      ..HtmlContent = reference.HtmlContent
-      ..SubChapters = reference.SubChapters
-      ..Title = reference.Title;
+      ..Anchor = "anchor"
+      ..ContentFileName = "orthros"
+      ..HtmlContent = "<html></html>"
+      ..SubChapters = []
+      ..Title = "A New Look at Chapters";
   });
   tearDown(() async {
     testChapter = null;

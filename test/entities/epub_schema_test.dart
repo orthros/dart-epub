@@ -20,9 +20,10 @@ main() async {
   setUp(() async {
     testSchema = new EpubSchema();
     testSchema
-      ..Package = reference.Package
-      ..Navigation = reference.Navigation
-      ..ContentDirectoryPath = reference.ContentDirectoryPath;
+      ..Package = new EpubPackage()
+      ..Navigation = new EpubNavigation()
+      ..ContentDirectoryPath = "some/random/path";
+    testSchema.Package.Version = EpubVersion.Epub2;
   });
   tearDown(() async {
     testSchema = null;

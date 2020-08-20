@@ -16,10 +16,10 @@ main() async {
   setUp(() async {
     testFile = new EpubByteContentFile();
     testFile
-      ..Content = reference.Content
-      ..ContentMimeType = reference.ContentMimeType
-      ..ContentType = reference.ContentType
-      ..FileName = reference.FileName;
+      ..Content = [0, 1, 2, 3]
+      ..ContentMimeType = "application/test"
+      ..ContentType = EpubContentType.OTHER
+      ..FileName = "orthrosFile";
   });
 
   tearDown(() async {
