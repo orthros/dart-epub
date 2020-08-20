@@ -22,7 +22,7 @@ class EpubBook {
       ..add(Author.hashCode)
       ..add(Schema.hashCode)
       ..add(Content.hashCode)
-      ..add(CoverImage.hashCode)
+      ..addAll(CoverImage?.getBytes()?.map((byte) => byte.hashCode) ?? [0])
       ..addAll(AuthorList?.map((author) => author.hashCode) ?? [0])
       ..addAll(Chapters?.map((chapter) => chapter.hashCode) ?? [0]);
     return hashObjects(objects);
