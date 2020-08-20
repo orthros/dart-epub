@@ -24,13 +24,15 @@ class EpubBookRef {
   }
 
   @override
-  int get hashCode => hashObjects([
-        Title.hashCode,
-        Author.hashCode,
-        AuthorList.hashCode,
-        Schema.hashCode,
-        Content.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..add(Title.hashCode)
+      ..add(Author.hashCode)
+      ..add(Schema.hashCode)
+      ..add(Content.hashCode)
+      ..addAll(AuthorList?.map((author) => author.hashCode) ?? [0]);
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubBookRef;

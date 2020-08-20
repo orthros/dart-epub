@@ -16,15 +16,17 @@ class EpubBook {
   List<EpubChapter> Chapters;
 
   @override
-  int get hashCode => hashObjects([
-        Title.hashCode,
-        Author.hashCode,
-        AuthorList.hashCode,
-        Schema.hashCode,
-        Content.hashCode,
-        CoverImage.hashCode,
-        Chapters.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..add(Title.hashCode)
+      ..add(Author.hashCode)
+      ..add(Schema.hashCode)
+      ..add(Content.hashCode)
+      ..add(CoverImage.hashCode)
+      ..addAll(AuthorList?.map((author) => author.hashCode) ?? [0])
+      ..addAll(Chapters?.map((chapter) => chapter.hashCode) ?? [0]);
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubBook;

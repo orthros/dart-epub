@@ -17,14 +17,16 @@ class EpubNavigation {
   List<EpubNavigationList> NavLists;
 
   @override
-  int get hashCode => hashObjects([
-        Head.hashCode,
-        DocTitle.hashCode,
-        DocAuthors.hashCode,
-        NavMap.hashCode,
-        PageList.hashCode,
-        NavLists.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..add(Head.hashCode)
+      ..add(DocTitle.hashCode)
+      ..add(NavMap.hashCode)
+      ..add(PageList.hashCode)
+      ..addAll(DocAuthors?.map((author) => author.hashCode) ?? [0])
+      ..addAll(NavLists?.map((navList) => navList.hashCode) ?? [0]);
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubNavigation;
