@@ -165,7 +165,8 @@ class NavigationReader {
 
 
       result.DocTitle  = EpubNavigationDocTitle();
-      result.DocTitle.Titles.add(headNode.findAllElements("title").firstWhere((element) =>  element != null, orElse: () => null).text.trim());
+      result.DocTitle.Titles  = package.Metadata.Titles;
+//      result.DocTitle.Titles.add(headNode.findAllElements("title").firstWhere((element) =>  element != null, orElse: () => null).text.trim());
 
       result.DocAuthors = List<EpubNavigationDocAuthor>();
 
