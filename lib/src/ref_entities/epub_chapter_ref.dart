@@ -18,13 +18,15 @@ class EpubChapterRef {
   }
 
   @override
-  int get hashCode => hashObjects([
-        Title.hashCode,
-        ContentFileName.hashCode,
-        Anchor.hashCode,
-        epubTextContentFileRef.hashCode,
-        SubChapters.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..add(Title.hashCode)
+      ..add(ContentFileName.hashCode)
+      ..add(Anchor.hashCode)
+      ..add(epubTextContentFileRef.hashCode)
+      ..addAll(SubChapters?.map((subChapter) => subChapter.hashCode) ?? [0]);
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubChapterRef;

@@ -1,4 +1,5 @@
 import 'package:quiver/collection.dart' as collections;
+import 'package:quiver/core.dart';
 
 import 'epub_navigation_page_target.dart';
 
@@ -6,7 +7,9 @@ class EpubNavigationPageList {
   List<EpubNavigationPageTarget> Targets;
 
   @override
-  int get hashCode => Targets.hashCode;
+  int get hashCode {
+    return hashObjects(Targets?.map((target) => target.hashCode) ?? [0]);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubNavigationPageList;

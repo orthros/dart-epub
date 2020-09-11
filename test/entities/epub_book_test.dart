@@ -19,13 +19,13 @@ main() async {
   setUp(() async {
     testBook = new EpubBook();
     testBook
-      ..Author = reference.Author
-      ..AuthorList = reference.AuthorList
-      ..Chapters = reference.Chapters
-      ..Content = reference.Content
-      ..CoverImage = reference.CoverImage
-      ..Schema = reference.Schema
-      ..Title = reference.Title;
+      ..Author = "orthros"
+      ..AuthorList = ["orthros"]
+      ..Chapters = [new EpubChapter()]
+      ..Content = new EpubContent()
+      ..CoverImage = Image(100, 100)
+      ..Schema = new EpubSchema()
+      ..Title = "A Dissertation on Epubs";
   });
   tearDown(() async {
     testBook = null;

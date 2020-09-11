@@ -20,11 +20,10 @@ main() async {
   setUp(() async {
     testBookRef = new EpubBookRef(arch);
     testBookRef
-      ..Author = reference.Author
-      ..AuthorList = reference.AuthorList
-      ..Content = reference.Content
-      ..Schema = reference.Schema
-      ..Title = reference.Title;
+      ..Author = "orthros"
+      ..AuthorList = ["orthros"]
+      ..Schema = new EpubSchema()
+      ..Title = "A Dissertation on Epubs";
   });
   tearDown(() async {
     testBookRef = null;

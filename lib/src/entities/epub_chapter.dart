@@ -9,13 +9,15 @@ class EpubChapter {
   List<EpubChapter> SubChapters;
 
   @override
-  int get hashCode => hashObjects([
-        Title.hashCode,
-        ContentFileName.hashCode,
-        Anchor.hashCode,
-        HtmlContent.hashCode,
-        SubChapters.hashCode
-      ]);
+  int get hashCode {
+    var objects = []
+      ..add(Title.hashCode)
+      ..add(ContentFileName.hashCode)
+      ..add(Anchor.hashCode)
+      ..add(HtmlContent.hashCode)
+      ..addAll(SubChapters?.map((subChapter) => subChapter.hashCode) ?? [0]);
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubChapter;

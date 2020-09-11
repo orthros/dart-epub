@@ -11,8 +11,14 @@ class EpubNavigationList {
   List<EpubNavigationTarget> NavigationTargets;
 
   @override
-  int get hashCode => hash4(Id.hashCode, Class.hashCode,
-      NavigationLabels.hashCode, NavigationTargets.hashCode);
+  int get hashCode {
+    var objects = []
+      ..add(Id.hashCode)
+      ..add(Class.hashCode)
+      ..addAll(NavigationLabels?.map((label) => label.hashCode) ?? [0])
+      ..addAll(NavigationTargets?.map((target) => target.hashCode) ?? [0]);
+    return hashObjects(objects);
+  }
 
   bool operator ==(other) {
     var otherAs = other as EpubNavigationList;
