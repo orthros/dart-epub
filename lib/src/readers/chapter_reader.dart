@@ -28,7 +28,7 @@ class ChapterReader {
         anchor = navigationPoint.Content.Source
             .substring(contentSourceAnchorCharIndex + 1);
       }
-
+      contentFileName = Uri.decodeFull(contentFileName);
       EpubTextContentFileRef htmlContentFileRef;
       if (!bookRef.Content.Html.containsKey(contentFileName)) {
         throw Exception(
