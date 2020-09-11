@@ -76,6 +76,9 @@ class PackageReader {
             case "media-type":
               manifestItem.MediaType = attributeValue;
               break;
+            case "media-overlay":
+              manifestItem.MediaOverlay = attributeValue;
+              break;
             case "required-namespace":
               manifestItem.RequiredNamespace = attributeValue;
               break;
@@ -87,6 +90,9 @@ class PackageReader {
               break;
             case "fallback-style":
               manifestItem.FallbackStyle = attributeValue;
+              break;
+            case "properties":
+              manifestItem.Properties = attributeValue;
               break;
           }
         });
@@ -284,9 +290,11 @@ class PackageReader {
   static EpubMetadataMeta readMetadataMetaVersion3(
       xml.XmlElement metadataMetaNode) {
     EpubMetadataMeta result = EpubMetadataMeta();
+    result.Attributes = {};
     metadataMetaNode.attributes
         .forEach((xml.XmlAttribute metadataMetaNodeAttribute) {
       String attributeValue = metadataMetaNodeAttribute.value;
+      result.Attributes[metadataMetaNodeAttribute.name.local.toLowerCase()] = attributeValue;
       switch (metadataMetaNodeAttribute.name.local.toLowerCase()) {
         case "id":
           result.Id = attributeValue;
@@ -369,6 +377,8 @@ class PackageReader {
     result.Items = List<EpubSpineItemRef>();
     String tocAttribute = spineNode.getAttribute("toc");
     result.TableOfContents = tocAttribute;
+    String pageProgression = spineNode.getAttribute("page-progression-direction");
+    result.ltr = ((pageProgression == null) || pageProgression.toLowerCase() == "ltr");
     spineNode.children
         .whereType<xml.XmlElement>()
         .forEach((xml.XmlElement spineItemNode) {

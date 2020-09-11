@@ -4,20 +4,24 @@ class EpubManifestItem {
   String Id;
   String Href;
   String MediaType;
+  String MediaOverlay;
   String RequiredNamespace;
   String RequiredModules;
   String Fallback;
   String FallbackStyle;
+  String Properties;
 
   @override
   int get hashCode => hashObjects([
         Id.hashCode,
         Href.hashCode,
         MediaType.hashCode,
+        MediaOverlay.hashCode,
         RequiredNamespace.hashCode,
         RequiredModules.hashCode,
         Fallback.hashCode,
-        FallbackStyle.hashCode
+        FallbackStyle.hashCode,
+        Properties.hashCode
       ]);
 
   bool operator ==(other) {
@@ -29,13 +33,15 @@ class EpubManifestItem {
     return Id == otherAs.Id &&
         Href == otherAs.Href &&
         MediaType == otherAs.MediaType &&
+        MediaOverlay == otherAs.MediaOverlay &&
         RequiredNamespace == otherAs.RequiredNamespace &&
         RequiredModules == otherAs.RequiredModules &&
         Fallback == otherAs.Fallback &&
-        FallbackStyle == otherAs.FallbackStyle;
+        FallbackStyle == otherAs.FallbackStyle &&
+        Properties == otherAs.Properties;
   }
 
   String toString() {
-    return "Id: ${Id}, Href = ${Href}, MediaType = ${MediaType}";
+    return "Id: ${Id}, Href = ${Href}, MediaType = ${MediaType}, Properties = ${Properties}, MediaOverlay = ${MediaOverlay}";
   }
 }
