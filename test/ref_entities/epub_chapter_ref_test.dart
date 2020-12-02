@@ -27,10 +27,10 @@ main() async {
 
     testChapterRef = new EpubChapterRef(contentFileRef2);
     testChapterRef
-      ..Anchor = reference.Anchor
-      ..ContentFileName = reference.ContentFileName
-      ..SubChapters = reference.SubChapters
-      ..Title = reference.Title;
+      ..Anchor = "anchor"
+      ..ContentFileName = "orthros"
+      ..SubChapters = []
+      ..Title = "A New Look at Chapters";
   });
 
   tearDown(() async {
