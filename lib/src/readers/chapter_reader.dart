@@ -33,14 +33,7 @@ class ChapterReader {
       if (!bookRef.Content.Html.containsKey(contentFileName)) {
         // It shouldn't be an encoded url, but we can handle it if it is.
         final decodedFileName = Uri.decodeFull(contentFileName);
-        if (!bookRef.Content.Html.containsKey(decoded)) {
-            throw Exception("Incorrect EPUB manifest: item with href = \"${contentFileName}\" is missing.");
-        }
-        
-        contentFileName = decodedFileName
-        if (bookRef.Content.Html.containsKey(decoded)) {
-          contentFileName = decoded;
-        } else {
+        if (!bookRef.Content.Html.containsKey(decodedFileName)) {
           throw Exception(
               "Incorrect EPUB manifest: item with href = \"${contentFileName}\" is missing.");
         }
